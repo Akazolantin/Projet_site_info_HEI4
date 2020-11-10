@@ -4,6 +4,11 @@
   <artifactId>site-info-hei</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+   <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.11</maven.compiler.target>
+        <maven.compiler.source>1.11</maven.compiler.source>
+    </properties>
   
     <dependencies>
         <dependency>
@@ -40,6 +45,7 @@
         </dependency>
 
     </dependencies>
+    
 
 
 </project>
