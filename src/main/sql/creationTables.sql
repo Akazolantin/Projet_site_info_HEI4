@@ -20,6 +20,10 @@ CREATE TABLE `tache` (
 );
 
 CREATE TABLE `identifiant` (
-
+	`Ident_id` int(11) NOT NULL AUTO_INCREMENT,
+	`nomUtil` varchar(30) NOT NULL,
+	`Mdp` varchar(30) NOT NULL,
+	`Admin` boolean NOT NULL,
+	PRIMARY KEY (`Ident_id`)
 );
 
