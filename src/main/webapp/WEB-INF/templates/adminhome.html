@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;
+			 charset=UTF-8">
+    <title>Page admin</title>
+</head>
+<body>
+<table>
+<tr th:each="eleve : ${eleves}">
+ <td th:text="${eleve.nom}"></td>
+ <td th:text="${eleve.prenom}"></td> 
+ <td th:text="${eleve.year}"></td>
+ <td th:text="${eleve.domaine}"></td> 
+ </tr>
+ </table>
+</body>
+</html>
