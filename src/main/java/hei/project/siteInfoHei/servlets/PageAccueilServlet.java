@@ -38,7 +38,7 @@ public class PageAccueilServlet extends GenericServlet{
         	resp.sendRedirect("admin");
         }
         	else {
-        		resp.sendRedirect("Eleve");
+        		resp.sendRedirect("avancement");
         	}
         	
         }else {
