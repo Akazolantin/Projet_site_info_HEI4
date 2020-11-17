@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
-import dao.DataSourceProvider;
 
+import dao.DataSourceProvider;
 import hei.project.siteInfoHei.entities.Identifiant;
 
 public class ListeIdentifiants {
