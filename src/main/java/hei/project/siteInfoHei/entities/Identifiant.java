@@ -4,7 +4,7 @@ public class Identifiant {
 	
 	private String NomUtil;
 	private String Mdp;
-	private boolean Admin;
+	private boolean Admin; 
 	
 	public Identifiant(String NomUtil, String Mdp, boolean Admin) {
 		this.NomUtil=NomUtil;
