@@ -14,7 +14,7 @@ import entities.Eleve;
 
 public class EleveDao {
 
-	public static List<Eleve> listEleves(String tripar,String anee,String dom,String rechNom) {
+	public static List<Eleve> listEleves(String tripar,String annee,String dom,String rechNom) {
 		List<Eleve> eleves = new ArrayList();
 		String sql="SELECT * FROM eleve WHERE (prenom LIKE ? OR nom LIKE ?) AND domaine LIKE ? AND year BETWEEN ? AND ?  ORDER BY ";
 
@@ -30,7 +30,7 @@ public class EleveDao {
 				int min,max;
 				int year;
 				statement.setString(3, dom);
-				year=Integer.parseInt(anee);
+				year=Integer.parseInt(annee);
 				if(year!=0) {min=max=year;}else {min=1;max=5;}
 				statement.setInt(4, min);
 				statement.setInt(5, max);
