@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<body>
 		<h1>Ma liste de taches</h1>
 				<table class="table table-hover">
@@ -17,8 +17,8 @@
 					</thead>
 					<tbody>
 						<tr th:each="taches : ${Tacheslist}">
-							<td th:text="${taches.id}">1</td>
-							<td th:text="${taches.Nom}">Tresorier Declic</td>
+							<td th:text="${tache.tache_id}">1</td>
+							<td th:text="${tache.title}">Tresorier Declic</td>
 							<td th:text="${taches.Type}">Responsabilité</td>
 							<td th:text="${#temporals.format(taches.Datedebut, 'd MMMM yyyy')}">20 septembre 2021</td>
 							<td th:text="${#temporals.format(taches.Datefin, 'd MMMM yyyy')}">1 juin 2022</td>

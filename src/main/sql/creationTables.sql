@@ -7,15 +7,14 @@ CREATE TABLE `eleve` (
   PRIMARY KEY (`eleve_id`)
 );
 
-CREATE TABLE `tache` (
-  `tache_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `TEA` (
+  `tea_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `release_date` date NOT NULL,
   `eleve_id` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
-  `summary` varchar(5000) DEFAULT NULL,
-  PRIMARY KEY (`tache_id`),
-  KEY `eleve_id_fk` (`eleve_id`),
+  PRIMARY KEY (`tea_id`),
+  KEY `elve_id_fk` (`eleve_id`),
   CONSTRAINT `eleve_id_fk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
