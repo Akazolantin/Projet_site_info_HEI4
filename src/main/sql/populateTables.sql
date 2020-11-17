@@ -7,8 +7,8 @@ INSERT INTO `eleve`(`eleve_id`,`nom`,`prenom`,`year`,`domaine`) VALUES (2,'Fauch
 INSERT INTO `eleve`(`eleve_id`,`nom`,`prenom`,`year`,`domaine`) VALUES (3,'De Foresta','Martin',4,'ITI');
 INSERT INTO `eleve`(`eleve_id`,`nom`,`prenom`,`year`,`domaine`) VALUES (4,'Paturel','Ronan',4,'ITI');
 
-INSERT INTO `identifiant`(`nomUtil`,`Mdp`,`Admin`) VALUES ('Ronan' , 'Paturel', true);
-INSERT INTO `identifiant`(`nomUtil`,`Mdp`,`Admin`) VALUES ('Eliott' , 'Desclodures', false);
+INSERT INTO `identifiant`(`nomUtil`,`Mdp`,`Admin`,`eleve_id`) VALUES ('Ronan' , 'Paturel', true,4);
+INSERT INTO `identifiant`(`nomUtil`,`Mdp`,`Admin`,`eleve_id`) VALUES ('Eliott' , 'Desclodures', false,1);
 
 INSERT INTO `TEA`(`tea_id`,`title`,`release_date`,`eleve_id`,`duration`) VALUES (1,'Forum HEI' ,'2019-10-10' ,2,120);
 INSERT INTO `TEA`(`tea_id`,`title`,`release_date`,`eleve_id`,`duration`) VALUES (2,'Salon Marseille' ,'2020-10-12' ,3,240);

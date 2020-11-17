@@ -9,13 +9,17 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+
+
+
 import dao.DataSourceProvider;
-import hei.project.siteInfoHei.entities.Identifiant;
+import entities.Identifiant;
 
 public class ListeIdentifiants {
 	public static String currentNomUtil;
 	public static String currentMdp;
 	public static boolean currentAdmin;
+	public static int IdUtil;
 	
 	
 	public static List<Identifiant> listeIdent() {
@@ -28,7 +32,8 @@ public class ListeIdentifiants {
 				while(resultSet.next()) {Identifiant ident = new Identifiant(
 						resultSet.getString("nomUtil"),
 						resultSet.getString("Mdp"),
-						resultSet.getBoolean("Admin"));
+						resultSet.getBoolean("Admin"),
+						resultSet.getInt("eleve_id"));
 				Ident.add(ident);}
 				}
 		}catch(SQLException e) {e.printStackTrace();}
@@ -43,6 +48,7 @@ public class ListeIdentifiants {
 					currentNomUtil=listeIdent().get(i).getNomUtil();
 					currentMdp=listeIdent().get(i).getMdp();
 					currentAdmin=listeIdent().get(i).getAdmin();
+					IdUtil=listeIdent().get(i).getId();
 					res= true;
 				}
 			}

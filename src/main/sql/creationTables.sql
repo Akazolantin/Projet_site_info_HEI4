@@ -2,7 +2,7 @@ CREATE TABLE `eleve` (
   `eleve_id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
-  `year` varchar(30) NOT NULL,
+  `year` int(3) NOT NULL,
   `domaine` varchar(30) NOT NULL,
   PRIMARY KEY (`eleve_id`)
 );
@@ -19,10 +19,12 @@ CREATE TABLE `TEA` (
 );
 
 CREATE TABLE `identifiant` (
-	`Ident_id` int(11) NOT NULL AUTO_INCREMENT,
 	`nomUtil` varchar(30) NOT NULL,
 	`Mdp` varchar(30) NOT NULL,
 	`Admin` boolean NOT NULL,
-	PRIMARY KEY (`Ident_id`)
+    `eleve_id` int(11) NOT NULL,
+	KEY `elve_id_fkk` (`eleve_id`),
+	CONSTRAINT `eleve_id_fkk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+	PRIMARY KEY (`nomUtil`)
 );
 

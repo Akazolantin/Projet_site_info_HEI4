@@ -20,7 +20,11 @@ public class AvancementServlet extends GenericServlet{
 			WebContext context = new WebContext(req, resp, req.getServletContext());
 
 	        TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+	        
+	        if (PageAccueilServlet.getSession()==false) {
+		    	   resp.sendRedirect("accueil");
+		       }
 	        templateEngine.process("avancement", context, resp.getWriter());
 			
-		}
+		} 				// si admin co essaye d'aller sur page eleve a partir de url + boutton //
 }
