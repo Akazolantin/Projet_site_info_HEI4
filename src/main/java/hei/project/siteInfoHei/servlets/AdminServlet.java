@@ -6,9 +6,12 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
+
+import dao.ListeIdentifiants;
 
 @WebServlet("/admin")
 public class AdminServlet extends GenericServlet{
@@ -19,5 +22,11 @@ public class AdminServlet extends GenericServlet{
 		WebContext context = new WebContext(req, resp, req.getServletContext());
 		context.setVariable("eleves", dao.EleveDao.listEleves(1,1,1,"coucou"));
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-        templateEngine.process("adminhome", context, resp.getWriter());
-}}
+        
+        if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
+	    	   resp.sendRedirect("accueil");
+	       }
+       templateEngine.process("adminhome", context, resp.getWriter());
+       
+	}
+}
