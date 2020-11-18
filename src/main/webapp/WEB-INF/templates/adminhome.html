@@ -42,13 +42,13 @@ Année
  <td th:text="${eleve.nom}"></td>
  <td th:text="${eleve.prenom}"></td> 
  <td th:text="HEI +' '+ ${eleve.year}"></td>
- <td th:text="${eleve.domaine}"></td> 
+ <td th:text="${eleve.domaine}"></td>
+ <td> <a href="avancement">details</a></td>
+ <td> <input type="hidden" id="id_eleve" name="${eleve.elve_id}" value="${eleve.elve_id}"/> </td>
  </tr>
  </table>
  
- <form method="post">
- <input type=submit name="button1" value="Button 1"/>
- </form>
- 
+<a href="accueil">deconnexion</a><br>
+ <a href="changeMdp">change votre mot de passe</a>
 </body>
 </html>

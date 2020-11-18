@@ -19,6 +19,9 @@ public class ListServlet extends GenericServlet {
 		WebContext context = new WebContext(req, resp, req.getServletContext());
 		
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+		  if (PageAccueilServlet.getSession()==false) {
+	    	   resp.sendRedirect("accueil");
+	       }
         templateEngine.process("listetaches", context, resp.getWriter());
 	}
 }

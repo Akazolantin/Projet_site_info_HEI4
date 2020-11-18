@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import dao.ListeIdentifiants;
+
 @WebServlet("/avancement")
 public class AvancementServlet extends GenericServlet{
+	
 	
 
 		@Override
@@ -26,5 +29,12 @@ public class AvancementServlet extends GenericServlet{
 		       }
 	        templateEngine.process("avancement", context, resp.getWriter());
 			
-		} 				// si admin co essaye d'aller sur page eleve a partir de url + boutton //
+		}
+		
+		public void deconnexion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+			//if (ListeIdentifiants.currentAdmin) {
+			
+			 
+		}
 }
+		
