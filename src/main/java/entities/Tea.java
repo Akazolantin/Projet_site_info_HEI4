@@ -9,16 +9,17 @@ public class Tea {
 		private LocalDate releaseDate;
 		private Integer duration;
 		private Eleve eleveId;
+		private Boolean valide;
 
 
-		public Tea(Integer id, String title, LocalDate releaseDate, Eleve eleveId, Integer duration) {
+		public Tea(Integer id, String title, LocalDate releaseDate, Eleve eleveId, Integer duration, Boolean valide) {
 			super();
 			this.id = id;
 			this.title = title;
 			this.releaseDate = releaseDate;
 			this.eleveId = eleveId;
 			this.duration = duration;
-			
+			this.valide = valide;
 		}
 
 		public Integer getId() {
@@ -60,6 +61,14 @@ public class Tea {
 
 		public void setDuration(Integer duration) {
 			this.duration = duration;
+		}
+		
+		public Boolean getValide() {
+			return valide;
+		}
+		
+		public void setValide(Boolean valide) {
+			this.valide = valide;
 		}
 
 

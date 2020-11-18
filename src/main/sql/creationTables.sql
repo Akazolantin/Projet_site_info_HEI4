@@ -13,6 +13,7 @@ CREATE TABLE `TEA` (
   `release_date` date NOT NULL,
   `eleve_id` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
+  `valide` boolean NOT NULL,
   PRIMARY KEY (`tea_id`),
   KEY `elve_id_fk` (`eleve_id`),
   CONSTRAINT `eleve_id_fk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
