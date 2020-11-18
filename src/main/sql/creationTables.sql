@@ -7,7 +7,7 @@ CREATE TABLE `eleve` (
   PRIMARY KEY (`eleve_id`)
 );
 
-CREATE TABLE `TEA` (
+CREATE TABLE `tea` (
   `tea_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `release_date` date NOT NULL,
@@ -27,5 +27,15 @@ CREATE TABLE `identifiant` (
 	KEY `elve_id_fkk` (`eleve_id`),
 	CONSTRAINT `eleve_id_fkk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 	PRIMARY KEY (`nomUtil`)
+);
+
+CREATE TABLE `NN` (
+	`eleve_id` int(11) NOT NULL,
+	`tea_id` int(11) NOT NULL,
+	KEY `elve_id_fk` (`eleve_id`),
+	KEY `tea_id_fk` (`tea_id`),
+	CONSTRAINT `eleve_id_fkk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+	CONSTRAINT `tea_id_fkk` FOREIGN KEY (`tea_id`) REFERENCES `TEA` (`tea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+
 );
 

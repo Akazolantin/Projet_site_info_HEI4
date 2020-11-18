@@ -8,19 +8,18 @@ public class Tea {
 		private String title;
 		private LocalDate releaseDate;
 		private Integer duration;
-		private Eleve eleveId;
 		private Boolean valide;
 
 
-		public Tea(Integer id, String title, LocalDate releaseDate, Eleve eleveId, Integer duration, Boolean valide) {
+		public Tea(Integer id, String title, LocalDate releaseDate, Integer duration, Boolean valide) {
 			super();
 			this.id = id;
 			this.title = title;
 			this.releaseDate = releaseDate;
-			this.eleveId = eleveId;
 			this.duration = duration;
 			this.valide = valide;
 		}
+
 
 		public Integer getId() {
 			return id;
@@ -45,15 +44,6 @@ public class Tea {
 		public void setReleaseDate(LocalDate releaseDate) {
 			this.releaseDate = releaseDate;
 		}
-		
-		public Eleve getEleve() {
-			return eleveId;
-		}
-
-		public void setEleve(Eleve eleveId) {
-			this.eleveId = eleveId;
-		}
-
 
 		public Integer getDuration() {
 			return duration;
@@ -71,5 +61,18 @@ public class Tea {
 			this.valide = valide;
 		}
 
+	
+
+		public Tea(Integer id, String title, LocalDate releaseDate, Integer duration) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.releaseDate = releaseDate;
+			this.duration = duration;
+			
+		}
+
+
+		
 
 	}

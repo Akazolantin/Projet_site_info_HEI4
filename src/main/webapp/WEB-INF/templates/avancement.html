@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<body>
 		<h1>Mon avancement des taches</h1><br>
 			<br>
 			<label for="barre">Progression des TEA:</label>
-			<progress id="barre" max="100" value="50"></progress><br>
+			<progress id="barre" max="100" th:value=${point} ></progress><br>
 
 			<label for="barre">Progression de la responsabilité :</label>
 			<progress id="barre" max="100" value="30"></progress><br>
