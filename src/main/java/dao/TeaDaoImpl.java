@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import entities.Eleve;
 import entities.Tea;
 import sitehei.dao.TeaDao;
 
@@ -60,8 +61,8 @@ public class TeaDaoImpl implements TeaDao  {
 				resultSelect.getInt("tea_id"),
 				resultSelect.getString("title"),
 				resultSelect.getDate("release_date").toLocalDate(),
-				resultSelect.getEleve("eleve_id"),
 				resultSelect.getInt("duration"));
+				
 	}
 
 	@Override
@@ -73,8 +74,7 @@ public class TeaDaoImpl implements TeaDao  {
 					PreparedStatement preparedStatement = cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 				preparedStatement.setString(1, tea.getTitle());
 				preparedStatement.setDate(2, Date.valueOf(tea.getReleaseDate()));
-				preparedStatement.setEleve(3, tea.getEleve());
-				preparedStatement.setInt(4, tea.getDuration());
+				preparedStatement.setInt(3, tea.getDuration());
 				preparedStatement.executeUpdate();
 				ResultSet ids = preparedStatement.getGeneratedKeys();
 				if (ids.next()) {
