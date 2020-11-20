@@ -20,13 +20,18 @@ public class TeaDaoImpl implements TeaDao  {
 	@Override
 	public List<Tea> listTea() {
 		List<Tea> result = new ArrayList<>();
+		String sql="SELECT * FROM tea JOIN eleve ON tea.eleve_id = eleve.eleve_id WHERE tea_id LIKE ? AND title LIKE ? AND release_date LIKE ? AND duration LIKE ? ORDER BY title";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
-					Statement statement = cnx.createStatement();
-					ResultSet resultSelect = statement.executeQuery("SELECT * FROM tea JOIN eleve ON tea.eleve_id = eleve.eleve_id ORDER BY title")) {
-				while(resultSelect.next()) {
-					result.add(createTeaFromResultSet(resultSelect));
+					PreparedStatement statement = cnx.prepareStatement(sql);
+					) 
+			{
+				
+				ResultSet resultSet=statement.executeQuery();
+				
+				while(resultSet.next()) {
+					result.add(createTeaFromResultSet(resultSet));
 				}
 			}
 		} catch (SQLException e) {
@@ -56,12 +61,12 @@ public class TeaDaoImpl implements TeaDao  {
 		return tea;
 	}
 
-	private Tea createTeaFromResultSet(ResultSet resultSelect) throws SQLException {
+	private Tea createTeaFromResultSet(ResultSet resultSet) throws SQLException {
 		return new Tea(
-				resultSelect.getInt("tea_id"),
-				resultSelect.getString("title"),
-				resultSelect.getDate("release_date").toLocalDate(),
-				resultSelect.getInt("duration"));
+				resultSet.getInt("tea_id"),
+				resultSet.getString("title"),
+				resultSet.getDate("release_date").toLocalDate(),
+				resultSet.getInt("duration"));
 				
 	}
 

@@ -15,7 +15,7 @@ import entities.Eleve;
 public class EleveDao {
 
 	public static List<Eleve> listEleves(String tripar,String annee,String dom,String rechNom) {
-		List<Eleve> eleves = new ArrayList();
+		List<Eleve> eleves = new ArrayList<Eleve>();
 		String sql="SELECT * FROM eleve WHERE (prenom LIKE ? OR nom LIKE ?) AND domaine LIKE ? AND year BETWEEN ? AND ?  ORDER BY ";
 
 		sql+=tripar+" ;";
