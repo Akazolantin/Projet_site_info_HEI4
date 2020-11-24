@@ -40,6 +40,6 @@ public class AvancementDao extends DataSourceProvider {
 catch(SQLException e) {e.printStackTrace();}
 	return TEA;
 
-	return (TEA);
+	
 	}
 }
