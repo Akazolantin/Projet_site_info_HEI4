@@ -15,7 +15,7 @@ CREATE TABLE `tea` (
   `duration` int(11) NOT NULL,
   `valide` boolean NOT NULL,
   PRIMARY KEY (`tea_id`),
-  KEY `elve_id_fk` (`eleve_id`),
+  KEY `eleve_id_fk` (`eleve_id`),
   CONSTRAINT `eleve_id_fk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
@@ -24,7 +24,7 @@ CREATE TABLE `identifiant` (
 	`Mdp` varchar(30) NOT NULL,
 	`Admin` boolean NOT NULL,
     `eleve_id` int(11) NOT NULL,
-	KEY `elve_id_fkk` (`eleve_id`),
+	KEY `eleve_id_fkk` (`eleve_id`),
 	CONSTRAINT `eleve_id_fkk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 	PRIMARY KEY (`nomUtil`)
 );
@@ -32,10 +32,10 @@ CREATE TABLE `identifiant` (
 CREATE TABLE `NN` (
 	`eleve_id` int(11) NOT NULL,
 	`tea_id` int(11) NOT NULL,
-	KEY `elve_id_fk` (`eleve_id`),
-	KEY `tea_id_fk` (`tea_id`),
-	CONSTRAINT `eleve_id_fkk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-	CONSTRAINT `tea_id_fkk` FOREIGN KEY (`tea_id`) REFERENCES `TEA` (`tea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+	KEY `eleve_id_f` (`eleve_id`),
+	KEY `tea_id_f` (`tea_id`),
+	CONSTRAINT `eleve_id_f` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+	CONSTRAINT `tea_id_f` FOREIGN KEY (`tea_id`) REFERENCES `TEA` (`tea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE `B2` (
