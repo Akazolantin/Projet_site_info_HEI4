@@ -4,10 +4,14 @@
     <meta http-equiv="Content-Type" content="text/html;
 			 charset=UTF-8">
     <title>Page admin</title>
+    
+
+    
 </head>
 <body>
-<form method="post">
 
+ 
+<form method="post">
 Trier par :
 <select name="tripar" size=1>
 <option value="nom" selected>nom (par défaut)</option>
@@ -33,7 +37,7 @@ Année
 <option value=5>HEI 5</option>
 </select>
 
-<input type="text" name="rechNom">
+<input type="text" name="rechNom" id="rechNom">
 
 <input type="submit" value="recherche">
 </form>
@@ -43,12 +47,12 @@ Année
  <td th:text="${eleve.prenom}"></td> 
  <td th:text="HEI +' '+ ${eleve.year}"></td>
  <td th:text="${eleve.domaine}"></td> 
+ <td><a th:href="@{/supprmodif(id=${eleve.eleve_id})}">modifier/supprimer</a></td>
  </tr>
+ 
  </table>
- 
- <form method="post">
- <input type=submit name="button1" value="Button 1"/>
- </form>
- 
+
+ <a href="addEleve">Ajouter un élève</a>
+ <script type="application/javascript" src="js/Admin.js"></script>
 </body>
 </html>

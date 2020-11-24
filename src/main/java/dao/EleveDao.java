@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,4 +48,47 @@ public class EleveDao {
 		}catch(SQLException e) {e.printStackTrace();}
 		return eleves;
 	}
-}
+	
+	public static void addEleve(String nom,String prenom, String annee,String dom) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+			String sqlQuery = "insert into eleve(nom, prenom, year, domaine) VALUES(?,?,?,?)";
+			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
+			{ statement.setString(1, nom); 
+			statement.setString(2, prenom); 
+			int year=Integer.parseInt(annee);
+			statement.setInt(3, year); 
+			statement.setString(4, dom);
+			statement.executeUpdate(); 
+		 } }
+		catch (SQLException e) { e.printStackTrace(); }
+		}
+		
+	
+	
+	public void delete(Integer eleveId) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
+			try (PreparedStatement statement = connection.prepareStatement( "delete from eleve where eleve_id=?")) {
+				statement.setInt(1, eleveId); statement.executeUpdate(); } }
+		catch (SQLException e) {e.printStackTrace(); } }
+	
+	public static Eleve getEleveById(int eleveId) {
+		Eleve eleve=new Eleve("","",0,"",0);
+		try {
+			DataSource dataSource = DataSourceProvider.getDataSource();
+			try (Connection cnx= dataSource.getConnection();
+				PreparedStatement statement = cnx.prepareStatement("SELECT * FROM eleve WHERE eleve_id=?");
+					)
+				{statement.setInt(1, eleveId);
+				ResultSet resultSet=statement.executeQuery();
+				while(resultSet.next()) {
+				eleve=new Eleve(resultSet.getString("nom"),
+						resultSet.getString("prenom"),
+						resultSet.getInt("year"),
+						resultSet.getString("domaine"),
+						resultSet.getInt("eleve_id"));}}
+		}catch(SQLException e) {e.printStackTrace();}
+		return(eleve);
+	}
+		
+	}
+
