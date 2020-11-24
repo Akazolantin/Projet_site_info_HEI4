@@ -65,7 +65,8 @@ public class TeaDaoImpl implements TeaDao  {
 				resultSet.getInt("tea_id"),
 				resultSet.getString("title"),
 				resultSet.getDate("release_date").toLocalDate(),
-				resultSet.getInt("duration"));
+				resultSet.getInt("duration"),
+				resultSet.getBoolean("valide"));
 	
 	}
 

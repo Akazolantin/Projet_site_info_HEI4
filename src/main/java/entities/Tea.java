@@ -61,18 +61,4 @@ public class Tea {
 			this.valide = valide;
 		}
 
-	
-
-		public Tea(Integer id, String title, LocalDate releaseDate, Integer duration) {
-			super();
-			this.id = id;
-			this.title = title;
-			this.releaseDate = releaseDate;
-			this.duration = duration;
-			
-		}
-
-
-		
-
 	}
