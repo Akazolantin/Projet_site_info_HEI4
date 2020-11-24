@@ -19,7 +19,7 @@ public class TeaDaoImpl implements TeaDao  {
 	@Override
 	public List<Tea> listTea() {
 		List<Tea> result = new ArrayList<>();
-		String sql="SELECT * FROM tea ORDER BY title";
+		String sql="SELECT * FROM tea WHERE valide IS NOT NULL ORDER BY title";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -65,7 +65,8 @@ public class TeaDaoImpl implements TeaDao  {
 				resultSet.getInt("tea_id"),
 				resultSet.getString("title"),
 				resultSet.getDate("release_date").toLocalDate(),
-				resultSet.getInt("duration"));
+				resultSet.getInt("duration"),
+				resultSet.getBoolean("valide"));
 	
 	}
 

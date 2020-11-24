@@ -42,11 +42,14 @@ public class TeaService {
 				throw new IllegalArgumentException("A tea must have a title.");
 			}
 			if (tea.getReleaseDate() == null) {
-				throw new IllegalArgumentException("A film must have a release date.");
+				throw new IllegalArgumentException("A tea must have a release date.");
 			}
 
 			if (tea.getDuration() == null) {
-				throw new IllegalArgumentException("A film must have a duration.");
+				throw new IllegalArgumentException("A tea must have a duration.");
+			}
+			if (tea.getValide() == null) {
+				throw new IllegalArgumentException("A tea must have a disponible or not.");
 			}
 			return teaDao.addTea(tea);
 		}
