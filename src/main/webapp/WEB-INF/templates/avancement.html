@@ -4,7 +4,8 @@
 		<h1>Mon avancement des taches</h1><br>
 			<br>
 			<label for="barre">Progression des TEA:</label>
-			<progress id="barre" max="100" th:value=${point} ></progress><br>
+			<progress id="barre" max="100" th:value=${point}+${point1}+${point2}></progress><br>
+
 
 			<label for="barre">Progression de la responsabilité :</label>
 			<progress id="barre" max="100" value="30"></progress><br>
@@ -19,5 +20,16 @@
 			
 <a href="accueil">deconnexion</a><br>
 <a href="changeMdp">change votre mot de passe</a>
+
+			<table>
+<tr th:each="tea : ${tea}">
+ <td th:value="${tea.id}"></td>
+ <td th:text="${tea.title}"></td> 
+ <td th:date="${tea.releaseDate}"></td>
+ <td th:value="${tea.duration}"></td>
+ <td th:boolean="${tea.valide}"></td> 
+ </tr>
+ </table>
+
 </body>
 </html>

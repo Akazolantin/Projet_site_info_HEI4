@@ -14,6 +14,10 @@ import org.thymeleaf.context.WebContext;
 
 import dao.ListeIdentifiants;
 
+
+import entities.B2;
+import entities.Responsabilité;
+
 import entities.Tea;
 
 @WebServlet("/avancement")
@@ -44,8 +48,30 @@ public class AvancementServlet extends GenericServlet{
 	        	if (tea.getValide()) {
 	        		result += tea.getDuration();
 	        }
+
 	        }
+	
 	        context.setVariable("point", result);
+
+	        
+	        List<Responsabilité> responsabilite = new ArrayList<Responsabilité>();
+	        int result1 = 0;
+	        for(Responsabilité responsab : responsabilite) {
+	        	if(responsab.getValide()==true) {
+	        		result1 = 20;
+	        	}
+	        }
+	        context.setVariable("point1", result1);
+	        
+	        List<B2> b2 = new ArrayList<B2>();
+	        int result2 = 0;
+	        for(B2 b2a : b2) {
+	        	if(b2a.getValide()==true) {
+	        		result2 = 20;
+	        	}
+	        }
+	        context.setVariable("point2", result2);
+	        
 	        if (PageAccueilServlet.getSession()==false) {
 		    	   resp.sendRedirect("accueil");
 		       }
@@ -57,7 +83,7 @@ public class AvancementServlet extends GenericServlet{
 				System.out.println(bouttton);
 			}
 			
-			 
-		}
-		}
 		
+			
+}
+}

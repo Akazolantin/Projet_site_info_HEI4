@@ -14,7 +14,9 @@ public class TeaDaoMockImpl implements TeaDao{
 
 	public TeaDaoMockImpl() {
 		teaList = new TreeMap<>();
-		teaList.put(1, new Tea(2,"Salon Marseille",LocalDate.of(2020, 10, 12),240 ));
+		teaList.put(1, new Tea(2,"Salon Marseille",LocalDate.of(2020, 10, 12),2 ,true));
+		teaList.put(2, new Tea(3,"Soirée Yncrea",LocalDate.of(2019, 8, 07),3,false));
+		teaList.put(3, new Tea(4,"Salon Marseille",LocalDate.of(2020, 4, 03), 4,true));
 
 	}
 

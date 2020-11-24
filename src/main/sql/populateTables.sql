@@ -1,4 +1,4 @@
-DELETE FROM tache;
+DELETE FROM tea;
 DELETE FROM eleve;
 DELETE FROM identifiant;
 
@@ -10,7 +10,7 @@ INSERT INTO `eleve`(`eleve_id`,`nom`,`prenom`,`year`,`domaine`) VALUES (4,'Patur
 INSERT INTO `identifiant`(`nomUtil`,`Mdp`,`Admin`,`eleve_id`) VALUES ('Ronan' , 'Paturel', true,4);
 INSERT INTO `identifiant`(`nomUtil`,`Mdp`,`Admin`,`eleve_id`) VALUES ('Eliott' , 'Desclodures', false,1);
 
-INSERT INTO `TEA`(`tea_id`,`title`,`release_date`,`eleve_id`,`duration`) VALUES (1,'Forum HEI' ,'2019-10-10' ,2,120);
-INSERT INTO `TEA`(`tea_id`,`title`,`release_date`,`eleve_id`,`duration`) VALUES (2,'Salon Marseille' ,'2020-10-12' ,3,240);
-INSERT INTO `TEA`(`tea_id`,`title`,`release_date`,`eleve_id`,`duration`) VALUES (3,'Aide une asso avec un moyen de locomotion' ,'2020-10-06',1,75);
+INSERT INTO `tea`(`tea_id`,`title`,`release_date`,`duration`,`valide`) VALUES (1,'Forum HEI' ,'2019-10-10' ,2,true);
+INSERT INTO `tea`(`tea_id`,`title`,`release_date`,`duration`,`valide`) VALUES (2,'Salon Marseille' ,'2020-10-12' ,4,false);
+INSERT INTO `tea`(`tea_id`,`title`,`release_date`,`duration`,`valide`) VALUES (3,'Aide une asso avec un moyen de locomotion' ,'2020-10-06',3,true);
 

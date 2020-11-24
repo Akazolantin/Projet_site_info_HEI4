@@ -11,7 +11,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import entities.Eleve;
 import entities.Tea;
 import sitehei.dao.TeaDao;
 
@@ -20,13 +19,18 @@ public class TeaDaoImpl implements TeaDao  {
 	@Override
 	public List<Tea> listTea() {
 		List<Tea> result = new ArrayList<>();
+		String sql="SELECT * FROM tea WHERE valide IS NOT NULL ORDER BY title";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
-					Statement statement = cnx.createStatement();
-					ResultSet resultSelect = statement.executeQuery("SELECT * FROM tea JOIN eleve ON tea.eleve_id = eleve.eleve_id ORDER BY title")) {
-				while(resultSelect.next()) {
-					result.add(createTeaFromResultSet(resultSelect));
+					PreparedStatement statement = cnx.prepareStatement(sql);
+					) 
+			{
+				
+				ResultSet resultSet=statement.executeQuery();
+				
+				while(resultSet.next()) {
+					result.add(createTeaFromResultSet(resultSet));
 				}
 			}
 		} catch (SQLException e) {
@@ -38,7 +42,7 @@ public class TeaDaoImpl implements TeaDao  {
 	@Override
 	public Tea getTea(Integer id) {
 		Tea tea = null;
-		String sql = "SELECT * FROM tea JOIN eleve ON tea.eleve_id = eleve.eleve_id WHERE tea_id=?";
+		String sql = "SELECT * FROM tea WHERE tea_id=?";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -56,18 +60,19 @@ public class TeaDaoImpl implements TeaDao  {
 		return tea;
 	}
 
-	private Tea createTeaFromResultSet(ResultSet resultSelect) throws SQLException {
+	private Tea createTeaFromResultSet(ResultSet resultSet) throws SQLException {
 		return new Tea(
-				resultSelect.getInt("tea_id"),
-				resultSelect.getString("title"),
-				resultSelect.getDate("release_date").toLocalDate(),
-				resultSelect.getInt("duration"));
-				
+				resultSet.getInt("tea_id"),
+				resultSet.getString("title"),
+				resultSet.getDate("release_date").toLocalDate(),
+				resultSet.getInt("duration"),
+				resultSet.getBoolean("valide"));
+	
 	}
 
 	@Override
 	public Tea addTea(Tea tea) {
-		String sql = "INSERT INTO tea (title, release_date, eleve_id, duration ) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO tea (title, release_date, duration ) VALUES ( ?, ?, ?)";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -90,7 +95,7 @@ public class TeaDaoImpl implements TeaDao  {
 
     @Override
     public Tea getRandomTea() {
-        String sqlQuery = "SELECT * FROM tea JOIN eleve ON tea.eleve_id = eleve.eleve_id ORDER BY RAND() LIMIT 1;";
+        String sqlQuery = "SELECT * FROM tea ORDER BY RAND() LIMIT 1;";
         try(Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try(ResultSet resultSet = statement.executeQuery(sqlQuery)) {
