@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-static-top" th:fragment="menu(currentPage)">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="accueil">Site Info HEI</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+            <ul class="nav navbar-nav">
+                <li th:class="${currentPage == 'accueil'} ? 'active' : ''"><a href="accueil">Accueil</a></li>
+                <li th:class="${currentPage == 'list'} ? 'active' : ''"><a href="list">Tea list</a></li>
+                <li th:class="${currentPage == 'newtea'} ? 'active' : ''"><a href="newtea">Add a new tea</a></li>
+  
+            </ul>
+        </div>
+    </nav>
+
+    <div th:fragment="randomtea">
+        <h4>A random tea:</h4>
+        <div class="well">
+            <h4>[[${randomtea.title}]] </h4>
+            <p>Released on [[${#temporals.format(randomtea.releaseDate, 'd MMMM yyyy')}]]</p>
+            <p>
+                <span class="glyphicon glyphicon-search"></span>
+                <a th:href="${'tea?id='+randomtea.id}"
+                   th:title="${'Details for '+randomtea.title}">See this tea details</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

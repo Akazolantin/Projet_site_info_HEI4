@@ -1,39 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-    <meta http-equiv="Content-Type" content="text/html;
-			 charset=UTF-8">
-    <title>Page des Tâches à valider</title>
-</head>
+  <head>
+    <title>Site Info HEI</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+	<!-- Navigation menu -->
+	<nav th:replace="~{fragments::menu('list')}"></nav>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<h3>Detail of the tea</h3>
 
-<body>
-	<form method="post">
-		<h1>Ma liste de TEA</h1>
-		
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Student</th>
-							<th>Title</th>
-							<th>Release date</th>
-							<th>Duration</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="tea : ${NNtea}">
-							<td th:text="${tea.id}"></td>
-							<td th:text="${tea.eleve_id}"></td>
-							<td th:text="${tea.title}"></td>
-							<td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}"></td>
-							<td th:text="${tea.valide}"></td>
-							
-						</tr>
-					</tbody>
-				</table>
+				<div class="row">
+					<label class="col-sm-2 control-label">Title</label>
+					<div class="col-sm-10">
+						<p th:text="${tea.title}">Forum HEI</p>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-sm-2 control-label">Release date</label>
+					<div class="col-sm-3">
+						<p th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}">2019-10-10</p>
+					</div>
+				</div>
 				
-		
-			 </form>
-	</body>
+				<div class="row">
+					<label class="col-sm-2 control-label">Duration</label>
+					<div class="col-sm-3">
+						<div class="input-group">
+						  <p>[[${tea.duration}]] heures</p>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<a class="btn btn-default" href="list">Back to the list</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4" th:insert="~{fragments::randomtea}"></div>
+		</div>
+	</div>
+  </body>
 </html>
