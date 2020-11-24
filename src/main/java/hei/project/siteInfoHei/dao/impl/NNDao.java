@@ -60,8 +60,9 @@ public class NNDao {
 				statement.setInt(1, eleveId);
 				ResultSet resultSet=statement.executeQuery();
 				while(resultSet.next()) {
-					statement.setInt(1,resultSet.getInt("tea_id") );
-					ResultSet resultSet1=statement.executeQuery();
+					statement1.setInt(1,resultSet.getInt("tea_id") );
+					ResultSet resultSet1=statement1.executeQuery();
+					while(resultSet1.next()) {
 					Tea tea= new Tea(
 						resultSet1.getInt("tea_id"),
 						resultSet1.getString("title"),
@@ -69,7 +70,7 @@ public class NNDao {
 						resultSet1.getInt("duration"),
 						resultSet1.getBoolean("valide"));
 					
-				NNtea.add(tea);}
+				NNtea.add(tea);}}
 				
 				
 			}

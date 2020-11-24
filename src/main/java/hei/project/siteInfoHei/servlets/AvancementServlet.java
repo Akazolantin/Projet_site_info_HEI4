@@ -77,6 +77,7 @@ public class AvancementServlet extends GenericServlet{
 	        int resultfin = 0;
 	        resultfin = result + result1 + result2;
 	        context.setVariable("point", resultfin);
+	        System.out.println(resultfin);
 	        
 	        if (PageAccueilServlet.getSession()==false) {
 		    	   resp.sendRedirect("accueil");
