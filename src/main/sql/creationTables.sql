@@ -1,3 +1,4 @@
+
 CREATE TABLE `eleve` (
   `eleve_id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,

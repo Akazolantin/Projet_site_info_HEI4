@@ -40,6 +40,7 @@ public class AddTeaServlet  extends GenericServlet {
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			String title = req.getParameter("title");
 			Integer duration = null;
+			Boolean valide = null;
 			try {
 				duration = Integer.parseInt(req.getParameter("duration"));
 			} catch (NumberFormatException nfe) {
@@ -54,11 +55,14 @@ public class AddTeaServlet  extends GenericServlet {
 			}
 
 			try {
-				Tea newTea = new Tea(null, title, releaseDate, duration,false);
+
+				Tea newTea = new Tea(null, title, releaseDate, duration,valide);
+
 				Tea createdTea = TeaService.getInstance().addTea(newTea);
 				// si creation ok on affiche le tea qui vient d'etre cree
 				resp.sendRedirect(String.format("tea?id=%d", createdTea.getId()));
-			} catch(IllegalArgumentException iae) {
+			}
+			catch(IllegalArgumentException iae) {
 				// Si erreur on ajoute le message d'erreur dans la session et on redirige sur la page de creation
 				req.getSession().setAttribute("errorMessage", iae.getMessage());
 				resp.sendRedirect("newtea");

@@ -68,6 +68,7 @@ public class NNDao {
 						resultSet1.getDate("release_date").toLocalDate(),
 						resultSet1.getInt("duration"),
 						resultSet1.getBoolean("valide"));
+
 				NNtea.add(tea);}
 				
 				
