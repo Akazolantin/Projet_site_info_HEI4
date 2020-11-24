@@ -20,7 +20,7 @@ public class AvancementDao extends DataSourceProvider {
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx= dataSource.getConnection();
-				PreparedStatement statement = cnx.prepareStatement("SELECT * FROM TEA WHERE eleveId = ?");
+				PreparedStatement statement = cnx.prepareStatement("SELECT * FROM TEA JOIN eleve ON tea.eleve_id = eleve.eleve_id ORDER BY title WHERE eleveId = ?");
 				)
 			{
 				statement.setString(1, eleveid);
@@ -29,8 +29,7 @@ public class AvancementDao extends DataSourceProvider {
 				while(resultSet.next()) {Tea tea= new Tea(
 						resultSet.getInt("id"),
 						resultSet.getString("title"),
-						resultSet.getDate("year"),
-						resultSet.getEleve("eleveid"),
+						resultSet.getDate("year").toLocalDate(),
 						resultSet.getInt("eleve_id"));
 				TEA.add(tea);}
 			}
@@ -38,6 +37,6 @@ public class AvancementDao extends DataSourceProvider {
 	}
 	
 catch(SQLException e) {e.printStackTrace();}
-	return ();
+	return (TEA);
 	}
 }
