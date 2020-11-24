@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import entities.Eleve;
 import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
+import hei.project.siteInfoHei.entities.Eleve;
 
 public class EleveDao {
 

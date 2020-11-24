@@ -9,18 +9,16 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import entities.Eleve;
-import entities.Tea;
+import hei.project.siteInfoHei.entities.Tea;
 
-public class AvancementDao extends DataSourceProvider {
-
+public class AvancementDao extends DataSourceProvider{
 	public static List<Tea> listTEA(String eleveid) {
 		List<Tea> TEA = new ArrayList();
 		
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx= dataSource.getConnection();
-				PreparedStatement statement = cnx.prepareStatement("SELECT * FROM TEA JOIN eleve ON tea.eleve_id = eleve.eleve_id ORDER BY title WHERE eleveId = ?");
+				PreparedStatement statement = cnx.prepareStatement("SELECT * FROM TEA WHERE eleveId = ?");
 				)
 			{
 				statement.setString(1, eleveid);
@@ -39,5 +37,8 @@ public class AvancementDao extends DataSourceProvider {
 	
 catch(SQLException e) {e.printStackTrace();}
 	return (TEA);
+
+	
 	}
+
 }

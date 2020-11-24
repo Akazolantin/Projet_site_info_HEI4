@@ -27,6 +27,7 @@ public class AdminServlet extends GenericServlet{
         if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
 	    	   resp.sendRedirect("accueil");
 	       }
+
        templateEngine.process("adminhome", context, resp.getWriter());
        
 	}
@@ -39,5 +40,8 @@ public class AdminServlet extends GenericServlet{
 		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves(tripar,year,dom,rechNom));
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         templateEngine.process("adminhome", context, resp.getWriter());
+        
+        
 	}
+        
 }

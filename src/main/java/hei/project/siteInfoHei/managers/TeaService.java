@@ -2,9 +2,9 @@ package hei.project.siteInfoHei.managers;
 
 import java.util.List;
 
-import entities.Tea;
 import hei.project.siteInfoHei.dao.TeaDao;
 import hei.project.siteInfoHei.dao.impl.TeaDaoImpl;
+import hei.project.siteInfoHei.entities.Tea;
 
 public class TeaService {
 

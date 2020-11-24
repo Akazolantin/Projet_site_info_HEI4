@@ -12,19 +12,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import entities.B2;
-import entities.Responsabilité;
-import entities.Tea;
-import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+
+import dao.ListeIdentifiants;
+import hei.project.siteInfoHei.entities.B2;
+import hei.project.siteInfoHei.entities.Responsabilité;
+import hei.project.siteInfoHei.entities.Tea;
+
 
 @WebServlet("/avancement")
 public class AvancementServlet extends GenericServlet{
+		
 	
 
 		@Override
 		public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			// TODO Auto-generated method stub
 			WebContext context = new WebContext(req, resp, req.getServletContext());
+			if (ListeIdentifiants.currentAdmin) {
+				String eleve_id = req.getParameter("id");
+				System.out.println(eleve_id);
+			}
+			String eleve_id = req.getParameter("id");
+			System.out.println(eleve_id);
+			
 			
 			List<Tea> listetea = new ArrayList<Tea>();
 			
@@ -37,8 +47,11 @@ public class AvancementServlet extends GenericServlet{
 	        	if (tea.getValide()) {
 	        		result += tea.getDuration();
 	        }
-	        }	
+
+	        }
+	
 	        context.setVariable("point", result);
+
 	        
 	        List<Responsabilité> responsabilite = new ArrayList<Responsabilité>();
 	        int result1 = 0;
@@ -62,10 +75,14 @@ public class AvancementServlet extends GenericServlet{
 		    	   resp.sendRedirect("accueil");
 		       }
 	        templateEngine.process("avancement", context, resp.getWriter());
+		}
+		public void deconnexion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+			if (ListeIdentifiants.currentAdmin) {
+				String bouttton = req.getParameter("custId");
+				System.out.println(bouttton);
+			}
 			
-		}// si admin co essaye d'aller sur page eleve a partir de url + boutton //
-		
 		
 			
 }
-
+}

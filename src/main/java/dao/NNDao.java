@@ -1,4 +1,4 @@
-package hei.project.siteInfoHei.dao.impl;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
 import hei.project.siteInfoHei.entities.Eleve;
 import hei.project.siteInfoHei.entities.Tea;
 
@@ -67,8 +68,8 @@ public class NNDao {
 						resultSet1.getString("title"),
 						resultSet1.getDate("release_date").toLocalDate(),
 						resultSet1.getInt("duration"),
-						resultSet.getBoolean("valide"));
-					
+						resultSet1.getBoolean("valide"));
+
 				NNtea.add(tea);}
 				
 				

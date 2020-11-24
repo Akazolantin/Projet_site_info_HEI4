@@ -1,4 +1,4 @@
-package entities;
+package hei.project.siteInfoHei.entities;
 
 import java.time.LocalDate;
 
@@ -60,10 +60,13 @@ public class Tea {
 		public void setValide(Boolean valide) {
 			this.valide = valide;
 		}
+}
+
+
 
 	
 
 
 		
 
-	}
+

@@ -11,8 +11,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import entities.Tea;
 import hei.project.siteInfoHei.dao.TeaDao;
+import hei.project.siteInfoHei.entities.Tea;
 
 public class TeaDaoImpl implements TeaDao  {
 

@@ -1,4 +1,4 @@
-package entities;
+package hei.project.siteInfoHei.entities;
 
 import java.time.LocalDate;
 
