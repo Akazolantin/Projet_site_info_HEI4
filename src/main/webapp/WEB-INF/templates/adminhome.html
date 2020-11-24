@@ -48,11 +48,16 @@ Année
  <td th:text="HEI +' '+ ${eleve.year}"></td>
  <td th:text="${eleve.domaine}"></td> 
  <td><a th:href="@{/supprmodif(id=${eleve.eleve_id})}">modifier/supprimer</a></td>
+ <td th:text="${eleve.domaine}"></td>
+ <td> <a th:href="@{/avancement(id=${eleve.eleve_id})}">details</a></td>
  </tr>
  
  </table>
 
  <a href="addEleve">Ajouter un élève</a>
  <script type="application/javascript" src="js/Admin.js"></script>
+ 
+<a href="accueil" >deconnexion</a><br>
+ <a href="changeMdp">change votre mot de passe</a>
 </body>
 </html>

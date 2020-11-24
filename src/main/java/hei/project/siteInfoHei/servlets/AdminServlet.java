@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import dao.ListeIdentifiants;
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 
 @WebServlet("/admin")
 public class AdminServlet extends GenericServlet{
@@ -23,11 +23,9 @@ public class AdminServlet extends GenericServlet{
 	    	   resp.sendRedirect("accueil");
 	       }
 		WebContext context = new WebContext(req, resp, req.getServletContext());
-		context.setVariable("eleves", dao.EleveDao.listEleves("nom","0","%",""));
+		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves("nom","0","%",""));
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
-        
-        
        templateEngine.process("adminhome", context, resp.getWriter());
        
 	}
@@ -41,8 +39,9 @@ public class AdminServlet extends GenericServlet{
 		String year=req.getParameter("year");
 		String tripar=req.getParameter("tripar");
 		String rechNom=req.getParameter("rechNom");
-		context.setVariable("eleves", dao.EleveDao.listEleves(tripar,year,dom,rechNom));
+		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves(tripar,year,dom,rechNom));
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-        templateEngine.process("adminhome", context, resp.getWriter());}else {System.out.println("ahah");}
+        templateEngine.process("adminhome", context, resp.getWriter());
 	}
-}
+        
+}}

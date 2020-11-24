@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<body>
-		<h1>Ma liste de taches</h1>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Nom</th>
-							<th>Type</th>
-							<th>Date de debut</th>
-							<th>Date de fin</th>
-							<th>Responsable</th>
-							<th>Information</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="taches : ${Tacheslist}">
-							<td th:text="${tache.tache_id}">1</td>
-							<td th:text="${tache.title}">Tresorier Declic</td>
-							<td th:text="${taches.Type}">Responsabilité</td>
-							<td th:text="${#temporals.format(taches.Datedebut, 'd MMMM yyyy')}">20 septembre 2021</td>
-							<td th:text="${#temporals.format(taches.Datefin, 'd MMMM yyyy')}">1 juin 2022</td>
-							<td th:text="${taches.Responsable}">Corentin Fauchet</td>
-							<td>
-								<a th:href="${'detail?id=' + film.id}" th:title="${'Details for ' + film.title}">
-								<span class="glyphicon glyphicon-search"></span>
-								</a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-	</body>
+  <head>
+    <title>Site Info HEI</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+	<!-- Navigation menu -->
+	<nav th:replace="~{fragments::menu('list')}"></nav>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<h3>Detail of the tea</h3>
+
+				<div class="row">
+					<label class="col-sm-2 control-label">Title</label>
+					<div class="col-sm-10">
+						<p th:text="${tea.title}">Forum HEI</p>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-sm-2 control-label">Release date</label>
+					<div class="col-sm-3">
+						<p th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}">2019-10-10</p>
+					</div>
+				</div>
+				
+				<div class="row">
+					<label class="col-sm-2 control-label">Duration</label>
+					<div class="col-sm-3">
+						<div class="input-group">
+						  <p>[[${tea.duration}]] heures</p>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<a class="btn btn-default" href="list">Back to the list</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4" th:insert="~{fragments::randomtea}"></div>
+		</div>
+	</div>
+  </body>
 </html>

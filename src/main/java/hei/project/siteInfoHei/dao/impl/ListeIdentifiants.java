@@ -1,6 +1,7 @@
-package dao;
+package hei.project.siteInfoHei.dao.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,11 +10,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-
-
-
-import dao.DataSourceProvider;
-import entities.Identifiant;
+import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
+import hei.project.siteInfoHei.entities.Identifiant;
 
 public class ListeIdentifiants {
 	public static String currentNomUtil;
@@ -55,4 +53,17 @@ public class ListeIdentifiants {
 		}
 		return res;
 	}
+	public static void changeMdp(String newMdp) {
+		try {
+			DataSource dataSource = DataSourceProvider.getDataSource();
+			try (Connection cnx = dataSource.getConnection();
+				PreparedStatement statement = cnx.prepareStatement("UPDATE identifiant SET Mdp=? WHERE eleve_id=?;");) {
+				statement.setInt(2,IdUtil);
+				statement.setString(1,newMdp);
+				statement.executeUpdate();
+				listeIdent();
+				currentMdp=newMdp;
+				}
+		}catch(SQLException e) {e.printStackTrace();}
+		}
 	}

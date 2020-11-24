@@ -12,17 +12,31 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import dao.ListeIdentifiants;
-import entities.Tea;
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+import hei.project.siteInfoHei.entities.B2;
+import hei.project.siteInfoHei.entities.Responsabilité;
+import hei.project.siteInfoHei.entities.Tea;
+
 
 @WebServlet("/avancement")
 public class AvancementServlet extends GenericServlet{
+		
 	
 
 		@Override
 		public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			// TODO Auto-generated method stub
 			WebContext context = new WebContext(req, resp, req.getServletContext());
+			
+			if (ListeIdentifiants.currentAdmin) {
+				String id = req.getParameter("id");
+				int eleve_id =Integer.parseInt(id);
+			}
+			else {
+				int eleve_id = ListeIdentifiants.IdUtil;
+			}
+			
+			
 			
 			List<Tea> listetea = new ArrayList<Tea>();
 			
@@ -35,16 +49,34 @@ public class AvancementServlet extends GenericServlet{
 	        	if (tea.getValide()) {
 	        		result += tea.getDuration();
 	        }
+
+	        }
+	
 	        context.setVariable("point", result);
+
+	        
+	        List<Responsabilité> responsabilite = new ArrayList<Responsabilité>();
+	        int result1 = 0;
+	        for(Responsabilité responsab : responsabilite) {
+	        	if(responsab.getValide()==true) {
+	        		result1 = 20;
+	        	}
+	        }
+	        context.setVariable("point1", result1);
+	        
+	        List<B2> b2 = new ArrayList<B2>();
+	        int result2 = 0;
+	        for(B2 b2a : b2) {
+	        	if(b2a.getValide()==true) {
+	        		result2 = 20;
+	        	}
+	        }
+	        context.setVariable("point2", result2);
 	        
 	        if (PageAccueilServlet.getSession()==false) {
 		    	   resp.sendRedirect("accueil");
 		       }
 	        templateEngine.process("avancement", context, resp.getWriter());
-			
-		}// si admin co essaye d'aller sur page eleve a partir de url + boutton //
+		}
 		
-		
-			
-}
 }

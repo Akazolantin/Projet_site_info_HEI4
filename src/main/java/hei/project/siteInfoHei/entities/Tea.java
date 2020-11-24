@@ -1,4 +1,4 @@
-package entities;
+package hei.project.siteInfoHei.entities;
 
 import java.time.LocalDate;
 
@@ -60,19 +60,13 @@ public class Tea {
 		public void setValide(Boolean valide) {
 			this.valide = valide;
 		}
+}
+
+
 
 	
-
-		public Tea(Integer id, String title, LocalDate releaseDate, Integer duration) {
-			super();
-			this.id = id;
-			this.title = title;
-			this.releaseDate = releaseDate;
-			this.duration = duration;
-			
-		}
 
 
 		
 
-	}
+
