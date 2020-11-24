@@ -1,8 +1,8 @@
-package sitehei.dao;
+package hei.project.siteInfoHei.dao;
 
 import java.util.List;
 
-import entities.Tea;
+import hei.project.siteInfoHei.entities.Tea;
 
 
 public interface TeaDao {

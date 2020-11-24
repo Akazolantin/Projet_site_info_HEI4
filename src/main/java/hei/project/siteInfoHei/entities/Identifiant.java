@@ -1,4 +1,4 @@
-package entities;
+package hei.project.siteInfoHei.entities;
 
 public class Identifiant {
 	

@@ -1,4 +1,4 @@
-package dao;
+package hei.project.siteInfoHei.dao.impl;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -11,8 +11,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import entities.Tea;
-import sitehei.dao.TeaDao;
+import hei.project.siteInfoHei.dao.TeaDao;
+import hei.project.siteInfoHei.entities.Tea;
 
 public class TeaDaoImpl implements TeaDao  {
 

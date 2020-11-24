@@ -1,4 +1,4 @@
-package dao;
+package hei.project.siteInfoHei.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,11 +9,9 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import entities.Eleve;
-import entities.Tea;
+import hei.project.siteInfoHei.entities.Tea;
 
-public class AvancementDao extends DataSourceProvider {
-
+public class AvancementDao extends DataSourceProvider{
 	public static List<Tea> listTEA(String eleveid) {
 		List<Tea> TEA = new ArrayList();
 		
@@ -38,8 +36,9 @@ public class AvancementDao extends DataSourceProvider {
 	}
 	
 catch(SQLException e) {e.printStackTrace();}
-	return TEA;
+	return (TEA);
 
 	
 	}
+
 }

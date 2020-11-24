@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import dao.ListeIdentifiants;
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+
+
 
 @WebServlet("/changeMdp")
 public class ChangeMdpServlet extends GenericServlet{

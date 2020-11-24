@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import dao.ListeIdentifiants;
-import entities.Identifiant;
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+import hei.project.siteInfoHei.entities.Identifiant;
 
 @WebServlet("/accueil")
 public class PageAccueilServlet extends GenericServlet{

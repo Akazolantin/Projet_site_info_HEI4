@@ -1,4 +1,4 @@
-package dao;
+package hei.project.siteInfoHei.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,11 +10,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-
-
-
-import dao.DataSourceProvider;
-import entities.Identifiant;
+import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
+import hei.project.siteInfoHei.entities.Identifiant;
 
 public class ListeIdentifiants {
 	public static String currentNomUtil;
@@ -56,7 +53,6 @@ public class ListeIdentifiants {
 		}
 		return res;
 	}
-	
 	public static void changeMdp(String newMdp) {
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
@@ -70,4 +66,4 @@ public class ListeIdentifiants {
 				}
 		}catch(SQLException e) {e.printStackTrace();}
 		}
-}
+	}

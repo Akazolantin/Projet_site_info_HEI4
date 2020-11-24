@@ -1,4 +1,4 @@
-package dao;
+package hei.project.siteInfoHei.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +9,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import dao.DataSourceProvider;
-import entities.Eleve;
+import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
+import hei.project.siteInfoHei.entities.Eleve;
 
 public class EleveDao {
 

@@ -1,11 +1,11 @@
-package dao.mock.impl;
+package hei.project.siteInfoHei.dao.mock.impl;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import entities.Tea;
-import sitehei.dao.TeaDao;
+import hei.project.siteInfoHei.dao.TeaDao;
+import hei.project.siteInfoHei.entities.Tea;
 
 public class TeaDaoMockImpl implements TeaDao{
 

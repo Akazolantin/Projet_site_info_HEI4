@@ -12,13 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import dao.ListeIdentifiants;
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+import hei.project.siteInfoHei.entities.B2;
+import hei.project.siteInfoHei.entities.Responsabilité;
+import hei.project.siteInfoHei.entities.Tea;
 
-
-import entities.B2;
-import entities.Responsabilité;
-
-import entities.Tea;
 
 @WebServlet("/avancement")
 public class AvancementServlet extends GenericServlet{
