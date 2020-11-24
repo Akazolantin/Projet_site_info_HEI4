@@ -35,7 +35,22 @@ CREATE TABLE `NN` (
 	KEY `elve_id_fk` (`eleve_id`),
 	KEY `tea_id_fk` (`tea_id`),
 	CONSTRAINT `eleve_id_fkk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-	CONSTRAINT `tea_id_fkk` FOREIGN KEY (`tea_id`) REFERENCES `TEA` (`tea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-
+	CONSTRAINT `tea_id_fkk` FOREIGN KEY (`tea_id`) REFERENCES `TEA` (`tea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
+CREATE TABLE `B2` (
+	`id` int(11) NOT NULL,
+	`datepassage` date NOT NULL,
+	`score` int(11) NOT NULL,
+	`valide` boolean NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Responsabilite` (
+  `resp_id` int(11) NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `release_date` date NOT NULL, 
+  `duration` int(11) NOT NULL,
+  `valide` boolean NOT NULL,
+  PRIMARY KEY (`resp_id`)
+ );
