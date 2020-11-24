@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+ <input name ="nom" type="text" th:placeholder="${eleve.nom}"/>
+<input name ="prenom" type="text" th:placeholder="${eleve.prenom}"/>
+<input name ="année" type="text" th:placeholder="HEI +' '+ ${eleve.year}"/> 
+<input name ="domaine" type="text" th:placeholder="${eleve.domaine}"/> 
+</body>
+</html>

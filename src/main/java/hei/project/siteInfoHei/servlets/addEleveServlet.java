@@ -6,16 +6,15 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+import dao.ListeIdentifiants;
 
-@WebServlet("/admin")
-public class AdminServlet extends GenericServlet{
-
+@WebServlet("/addEleve")
+public class addEleveServlet extends GenericServlet{
+	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -23,25 +22,24 @@ public class AdminServlet extends GenericServlet{
 	    	   resp.sendRedirect("accueil");
 	       }
 		WebContext context = new WebContext(req, resp, req.getServletContext());
-		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves("nom","0","%",""));
-        TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-
-       templateEngine.process("adminhome", context, resp.getWriter());
-       
-	}
+		 TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+		 context.setVariable("message","");
+	        
+	        
+	       templateEngine.process("addEleve", context, resp.getWriter());}
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		WebContext context = new WebContext(req, resp, req.getServletContext());
-		String mem=req.getParameter("memoBouton");
-		System.out.println(mem);
-		
-		if(mem==null) {
 		String dom=req.getParameter("domaine");
 		String year=req.getParameter("year");
-		String tripar=req.getParameter("tripar");
-		String rechNom=req.getParameter("rechNom");
-		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves(tripar,year,dom,rechNom));
+		String nom=req.getParameter("nom");
+		String prenom=req.getParameter("prenom");
+		if(nom.equals("") || prenom.equals("")) {context.setVariable("message", "La saisie n'est pas valide, veuillez remplir tous les champs.");}
+		else {dao.EleveDao.addEleve(nom, prenom, year, dom);
+			context.setVariable("message","L'élève a été créé avec succés.");
+		}
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-        templateEngine.process("adminhome", context, resp.getWriter());
+		templateEngine.process("addEleve", context, resp.getWriter());
 	}
-        
-}}
+
+}
