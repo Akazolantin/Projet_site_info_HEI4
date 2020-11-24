@@ -1,4 +1,4 @@
-package sitehei.dao;
+package hei.project.siteInfoHei.dao;
 
 import java.util.List;
 

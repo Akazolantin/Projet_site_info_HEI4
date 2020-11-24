@@ -1,4 +1,4 @@
-package dao;
+package hei.project.siteInfoHei.dao.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,11 +9,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-
-
-
-import dao.DataSourceProvider;
 import entities.Identifiant;
+import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
 
 public class ListeIdentifiants {
 	public static String currentNomUtil;

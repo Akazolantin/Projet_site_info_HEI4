@@ -1,4 +1,4 @@
-package dao;
+package hei.project.siteInfoHei.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +30,8 @@ public class AvancementDao extends DataSourceProvider {
 						resultSet.getInt("id"),
 						resultSet.getString("title"),
 						resultSet.getDate("year").toLocalDate(),
-						resultSet.getInt("eleve_id"));
+						resultSet.getInt("eleve_id"),
+						resultSet.getBoolean("valide"));
 				TEA.add(tea);}
 			}
 			

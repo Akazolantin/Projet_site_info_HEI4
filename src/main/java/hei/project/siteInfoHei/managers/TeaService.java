@@ -1,11 +1,10 @@
-package managers;
+package hei.project.siteInfoHei.managers;
 
 import java.util.List;
 
-import dao.TeaDaoImpl;
 import entities.Tea;
-
-import sitehei.dao.TeaDao;
+import hei.project.siteInfoHei.dao.TeaDao;
+import hei.project.siteInfoHei.dao.impl.TeaDaoImpl;
 
 public class TeaService {
 

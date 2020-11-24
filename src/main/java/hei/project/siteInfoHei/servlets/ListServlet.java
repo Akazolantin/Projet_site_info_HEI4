@@ -15,8 +15,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import entities.Tea;
-
-import managers.TeaService;
+import hei.project.siteInfoHei.managers.TeaService;
 
 
 @WebServlet("/list")

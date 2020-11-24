@@ -4,7 +4,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import entities.Tea;
-import managers.TeaService;
+import hei.project.siteInfoHei.managers.TeaService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
