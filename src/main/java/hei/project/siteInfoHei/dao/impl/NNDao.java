@@ -29,15 +29,16 @@ public class NNDao {
 				statement.setInt(1, teaId);
 				ResultSet resultSet=statement.executeQuery();
 				while(resultSet.next()) {
-					statement.setInt(1,resultSet.getInt("eleve_id") );
-					ResultSet resultSet1=statement.executeQuery();
+					statement1.setInt(1,resultSet.getInt("eleve_id") );
+					ResultSet resultSet1=statement1.executeQuery();
+					while(resultSet1.next()) {
 					Eleve eleve= new Eleve(
 							resultSet1.getString("nom"),
 							resultSet1.getString("prenom"),
 							resultSet1.getInt("year"),
 							resultSet1.getString("domaine"),
 							resultSet1.getInt("eleve_id"));
-					NNeleve.add(eleve);
+					NNeleve.add(eleve);}
 				}
 				
 				
