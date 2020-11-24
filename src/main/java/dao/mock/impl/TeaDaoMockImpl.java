@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import entities.Eleve;
 import entities.Tea;
 import sitehei.dao.TeaDao;
 
@@ -15,7 +14,7 @@ public class TeaDaoMockImpl implements TeaDao{
 
 	public TeaDaoMockImpl() {
 		teaList = new TreeMap<>();
-		teaList.put(1, new Tea(2,"Salon Marseille",LocalDate.of(2020, 10, 12),new Eleve("De Foresta","Martin",4,"ITI",3),240 ));
+		teaList.put(1, new Tea(2,"Salon Marseille",LocalDate.of(2020, 10, 12),240 ));
 
 	}
 
@@ -41,28 +40,5 @@ public class TeaDaoMockImpl implements TeaDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public List<Tea> listTea() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Tea getTea(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Tea addTea(Tea tea) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Tea getRandomTea() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

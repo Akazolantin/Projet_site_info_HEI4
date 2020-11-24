@@ -43,12 +43,11 @@ Année
  <td th:text="${eleve.prenom}"></td> 
  <td th:text="HEI +' '+ ${eleve.year}"></td>
  <td th:text="${eleve.domaine}"></td>
- <td> <a href="avancement">details</a></td>
- <td> <input type="hidden" id="id_eleve" name="${eleve.elve_id}" value="${eleve.elve_id}"/> </td>
+ <td> <a th:href="@{/avancement(id=${eleve.eleve_id})}">details</a></td>
  </tr>
  </table>
  
-<a href="accueil">deconnexion</a><br>
+<a href="accueil" >deconnexion</a><br>
  <a href="changeMdp">change votre mot de passe</a>
 </body>
 </html>
