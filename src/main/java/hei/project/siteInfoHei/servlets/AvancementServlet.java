@@ -16,7 +16,7 @@ import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.B2;
 import hei.project.siteInfoHei.entities.Responsabilité;
 import hei.project.siteInfoHei.entities.Tea;
-
+import hei.project.siteInfoHei.dao.impl.NNDao;
 
 @WebServlet("/avancement")
 public class AvancementServlet extends GenericServlet{
@@ -28,17 +28,19 @@ public class AvancementServlet extends GenericServlet{
 			// TODO Auto-generated method stub
 			WebContext context = new WebContext(req, resp, req.getServletContext());
 			
+			int eleve_id;
+			
 			if (ListeIdentifiants.currentAdmin) {
 				String id = req.getParameter("id");
-				int eleve_id =Integer.parseInt(id);
+				eleve_id =Integer.parseInt(id);
 			}
 			else {
-				int eleve_id = ListeIdentifiants.IdUtil;
+				eleve_id = ListeIdentifiants.IdUtil;
 			}
 			
 			
 			
-			List<Tea> listetea = new ArrayList<Tea>();
+			List<Tea> listetea = hei.project.siteInfoHei.dao.impl.NNDao.listNNTea(eleve_id);
 			
 			context.setVariable("tea", listetea);
 	        TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
@@ -52,7 +54,7 @@ public class AvancementServlet extends GenericServlet{
 
 	        }
 	
-	        context.setVariable("point", result);
+	        
 
 	        
 	        List<Responsabilité> responsabilite = new ArrayList<Responsabilité>();
@@ -62,7 +64,7 @@ public class AvancementServlet extends GenericServlet{
 	        		result1 = 20;
 	        	}
 	        }
-	        context.setVariable("point1", result1);
+	        
 	        
 	        List<B2> b2 = new ArrayList<B2>();
 	        int result2 = 0;
@@ -71,7 +73,10 @@ public class AvancementServlet extends GenericServlet{
 	        		result2 = 20;
 	        	}
 	        }
-	        context.setVariable("point2", result2);
+	        
+	        int resultfin = 0;
+	        resultfin = result + result1 + result2;
+	        context.setVariable("point", resultfin);
 	        
 	        if (PageAccueilServlet.getSession()==false) {
 		    	   resp.sendRedirect("accueil");
