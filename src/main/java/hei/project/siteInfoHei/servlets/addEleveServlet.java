@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import dao.ListeIdentifiants;
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 
 @WebServlet("/addEleve")
 public class addEleveServlet extends GenericServlet{
@@ -35,7 +35,7 @@ public class addEleveServlet extends GenericServlet{
 		String nom=req.getParameter("nom");
 		String prenom=req.getParameter("prenom");
 		if(nom.equals("") || prenom.equals("")) {context.setVariable("message", "La saisie n'est pas valide, veuillez remplir tous les champs.");}
-		else {dao.EleveDao.addEleve(nom, prenom, year, dom);
+		else {hei.project.siteInfoHei.dao.impl.EleveDao.addEleve(nom, prenom, year, dom);
 			context.setVariable("message","L'élève a été créé avec succés.");
 		}
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());

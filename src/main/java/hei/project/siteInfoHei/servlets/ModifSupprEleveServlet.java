@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import dao.ListeIdentifiants;
-import entities.Eleve;
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+import hei.project.siteInfoHei.entities.Eleve;
+import hei.project.siteInfoHei.dao.impl.EleveDao;
 
 @WebServlet("/supprmodif")
 public class ModifSupprEleveServlet extends GenericServlet{
@@ -23,7 +24,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse resp) throws Servl
 	int id = Integer.parseInt(req.getParameter("id"));
     TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
     
-    context.setVariable("eleve", dao.EleveDao.getEleveById(id));
+    context.setVariable("eleve", hei.project.siteInfoHei.dao.impl.EleveDao.getEleveById(id));
     if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
     	   resp.sendRedirect("accueil");
        }
