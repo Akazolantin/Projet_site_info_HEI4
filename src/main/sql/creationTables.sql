@@ -11,12 +11,9 @@ CREATE TABLE `tea` (
   `tea_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `release_date` date NOT NULL,
-  `eleve_id` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
   `valide` boolean NOT NULL,
-  PRIMARY KEY (`tea_id`),
-  KEY `eleve_id_fk` (`eleve_id`),
-  CONSTRAINT `eleve_id_fk` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`tea_id`)
 );
 
 CREATE TABLE `identifiant` (
@@ -35,6 +32,6 @@ CREATE TABLE `NN` (
 	KEY `eleve_id_f` (`eleve_id`),
 	KEY `tea_id_f` (`tea_id`),
 	CONSTRAINT `eleve_id_f` FOREIGN KEY (`eleve_id`) REFERENCES `eleve` (`eleve_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-	CONSTRAINT `tea_id_f` FOREIGN KEY (`tea_id`) REFERENCES `TEA` (`tea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+	CONSTRAINT `tea_id_f` FOREIGN KEY (`tea_id`) REFERENCES `tea` (`tea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 

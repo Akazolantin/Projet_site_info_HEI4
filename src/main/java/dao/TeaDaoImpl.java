@@ -11,7 +11,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import entities.Eleve;
 import entities.Tea;
 import sitehei.dao.TeaDao;
 
@@ -20,7 +19,7 @@ public class TeaDaoImpl implements TeaDao  {
 	@Override
 	public List<Tea> listTea() {
 		List<Tea> result = new ArrayList<>();
-		String sql="SELECT * FROM tea JOIN eleve ON tea.eleve_id = eleve.eleve_id WHERE tea_id LIKE ? AND title LIKE ? AND release_date LIKE ? AND duration LIKE ? ORDER BY title";
+		String sql="SELECT * FROM tea ORDER BY title";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -43,7 +42,7 @@ public class TeaDaoImpl implements TeaDao  {
 	@Override
 	public Tea getTea(Integer id) {
 		Tea tea = null;
-		String sql = "SELECT * FROM tea JOIN eleve ON tea.eleve_id = eleve.eleve_id WHERE tea_id=?";
+		String sql = "SELECT * FROM tea WHERE tea_id=?";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -67,12 +66,12 @@ public class TeaDaoImpl implements TeaDao  {
 				resultSet.getString("title"),
 				resultSet.getDate("release_date").toLocalDate(),
 				resultSet.getInt("duration"));
-				
+	
 	}
 
 	@Override
 	public Tea addTea(Tea tea) {
-		String sql = "INSERT INTO tea (title, release_date, eleve_id, duration ) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO tea (title, release_date, duration ) VALUES ( ?, ?, ?)";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -95,7 +94,7 @@ public class TeaDaoImpl implements TeaDao  {
 
     @Override
     public Tea getRandomTea() {
-        String sqlQuery = "SELECT * FROM tea JOIN eleve ON tea.eleve_id = eleve.eleve_id ORDER BY RAND() LIMIT 1;";
+        String sqlQuery = "SELECT * FROM tea ORDER BY RAND() LIMIT 1;";
         try(Connection connection = DataSourceProvider.getDataSource().getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try(ResultSet resultSet = statement.executeQuery(sqlQuery)) {

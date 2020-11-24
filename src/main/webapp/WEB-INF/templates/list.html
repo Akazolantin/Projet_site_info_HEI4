@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <title>Page des Tâches à valider</title> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+	<!-- Navigation menu -->
+	<nav th:replace="~{fragments::menu('list')}"></nav>
+	<form method="post">
+		<h2>Ma liste de TEA</h2>
+		
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<h3>Films</h3>
+							<table class="table table-hover">
+								
+								<tr>
+									<th>#</th>
+									<th>Title</th>
+									<th>Release date</th>
+									<th>Duration</th>
+									<th></th>
+								</tr>
+					
+						<tr th:each="tea : ${result}">
+							<td th:text="${tea.id}">1</td>
+							<td th:text="${tea.title}">Forum HEI</td>
+							<td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}">2019-10-10</td>
+							<td th:text="${tea.duration}"><span class="input-group-addon">heures</span></td>
+							<td th:text="${tea.valide}">True</td>
+							
+						</tr>
+					
+				</table>
+			</div>
+			<div class="col-md-4" th:insert="~{fragments::randomtea}"></div>
+    	</div>
+	</div>
+			 </form>
+	</body>
+</html>
