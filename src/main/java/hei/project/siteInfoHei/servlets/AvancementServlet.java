@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-
-import dao.ListeIdentifiants;
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.B2;
 import hei.project.siteInfoHei.entities.Responsabilité;
 import hei.project.siteInfoHei.entities.Tea;
@@ -28,12 +27,15 @@ public class AvancementServlet extends GenericServlet{
 		public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			// TODO Auto-generated method stub
 			WebContext context = new WebContext(req, resp, req.getServletContext());
+			
 			if (ListeIdentifiants.currentAdmin) {
-				String eleve_id = req.getParameter("id");
-				System.out.println(eleve_id);
+				String id = req.getParameter("id");
+				int eleve_id =Integer.parseInt(id);
 			}
-			String eleve_id = req.getParameter("id");
-			System.out.println(eleve_id);
+			else {
+				int eleve_id = ListeIdentifiants.IdUtil;
+			}
+			
 			
 			
 			List<Tea> listetea = new ArrayList<Tea>();
@@ -76,13 +78,5 @@ public class AvancementServlet extends GenericServlet{
 		       }
 	        templateEngine.process("avancement", context, resp.getWriter());
 		}
-		public void deconnexion(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
-			if (ListeIdentifiants.currentAdmin) {
-				String bouttton = req.getParameter("custId");
-				System.out.println(bouttton);
-			}
-			
 		
-			
-}
 }
