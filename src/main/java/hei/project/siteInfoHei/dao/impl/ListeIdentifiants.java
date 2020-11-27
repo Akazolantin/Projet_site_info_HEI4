@@ -19,6 +19,17 @@ public class ListeIdentifiants {
 	public static boolean currentAdmin;
 	public static int IdUtil;
 	
+	public static void addIdent(int eleve_id,String ident, String mdp) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+			String sqlQuery = "insert into identifiant(eleve_id, nomUtil, Mdp, Admin) VALUES(?,?,?,false)";
+			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
+			{ statement.setInt(1, eleve_id); 
+			statement.setString(2, ident);
+			statement.setString(3, mdp);
+			statement.executeUpdate(); 
+		 } }
+		catch (SQLException e) { e.printStackTrace(); }
+		}
 	
 	public static List<Identifiant> listeIdent() {
 		List<Identifiant> Ident = new ArrayList();
@@ -66,4 +77,10 @@ public class ListeIdentifiants {
 				}
 		}catch(SQLException e) {e.printStackTrace();}
 		}
+	
+	public static void deleteEleve(Integer eleveId) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
+			try (PreparedStatement statement = connection.prepareStatement( "delete from identifiant where eleve_id=?")) {
+				statement.setInt(1, eleveId); statement.executeUpdate(); } }
+		catch (SQLException e) {e.printStackTrace(); } }
 	}
