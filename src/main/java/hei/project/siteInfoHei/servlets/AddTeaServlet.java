@@ -45,7 +45,12 @@ public class AddTeaServlet  extends GenericServlet {
 				duration = Integer.parseInt(req.getParameter("duration"));
 			} catch (NumberFormatException nfe) {
 			}
-
+			
+			try {
+				valide = Boolean.parseBoolean(req.getParameter("valide"));
+			} catch (NumberFormatException vpe) {
+			}
+			
 			String releaseDateAsString = req.getParameter("releaseDate");
 			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate releaseDate = null;
@@ -55,18 +60,19 @@ public class AddTeaServlet  extends GenericServlet {
 			}
 
 			try {
-
 				Tea newTea = new Tea(null, title, releaseDate, duration,valide);
-
 				Tea createdTea = TeaService.getInstance().addTea(newTea);
 				// si creation ok on affiche le tea qui vient d'etre cree
 				resp.sendRedirect(String.format("tea?id=%d", createdTea.getId()));
 			}
+			
 			catch(IllegalArgumentException iae) {
 				// Si erreur on ajoute le message d'erreur dans la session et on redirige sur la page de creation
 				req.getSession().setAttribute("errorMessage", iae.getMessage());
 				resp.sendRedirect("newtea");
 			}
+			
+	
 		}
 	
 
