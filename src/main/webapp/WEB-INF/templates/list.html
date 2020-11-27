@@ -33,7 +33,8 @@
 							<td th:text="${tea.id}">1</td>
 							<td th:text="${tea.title}">Forum HEI</td>
 							<td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}">2019-10-10</td>
-							<td th:text="${tea.duration}"></td>
+							<td><p th:text="${tea.duration}">heure(s)</p></td>
+							
 							<td th:text="${tea.valide}">True</td>
 							
 						</tr>

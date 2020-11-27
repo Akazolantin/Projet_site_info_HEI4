@@ -31,10 +31,6 @@ import hei.project.siteInfoHei.managers.TeaService;
 			TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 			templateEngine.process("list", context, resp.getWriter());
 
-			if (PageAccueilServlet.getSession()==false) {
-	    	   resp.sendRedirect("accueil");
-	       }
-        templateEngine.process("listetaches", context, resp.getWriter());
 	}
 }
 

@@ -9,7 +9,7 @@
     
 </head>
 <body>
-
+<nav th:replace="~{fragments::menu('list')}"></nav>
  
 <form method="post">
 Trier par :
@@ -57,6 +57,7 @@ Année
  <script type="application/javascript" src="js/Admin.js"></script>
  
 <a href="accueil" >deconnexion</a><br>
- <a href="changeMdp">change votre mot de passe</a>
+<a href="changeMdp">change votre mot de passe</a>
+
 </body>
 </html>

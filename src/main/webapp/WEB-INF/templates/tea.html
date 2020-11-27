@@ -14,23 +14,23 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<h3>Detail of the tea</h3>
+				<h3>Détail du tea</h3>
 
 				<div class="row">
-					<label class="col-sm-2 control-label">Title</label>
+					<label class="col-sm-2 control-label">Titre</label>
 					<div class="col-sm-10">
 						<p th:text="${tea.title}">Forum HEI</p>
 					</div>
 				</div>
 				<div class="row">
-					<label class="col-sm-2 control-label">Release date</label>
+					<label class="col-sm-2 control-label">Date</label>
 					<div class="col-sm-3">
 						<p th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}">2019-10-10</p>
 					</div>
 				</div>
 				
 				<div class="row">
-					<label class="col-sm-2 control-label">Duration</label>
+					<label class="col-sm-2 control-label">Durée</label>
 					<div class="col-sm-3">
 						<div class="input-group">
 						  <p>[[${tea.duration}]] heures</p>
@@ -41,7 +41,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-offset-2 col-sm-10">
-						<a class="btn btn-default" href="list">Back to the list</a>
+						<a class="btn btn-default" href="list">Retour à la liste des TEA</a>
 					</div>
 				</div>
 			</div>

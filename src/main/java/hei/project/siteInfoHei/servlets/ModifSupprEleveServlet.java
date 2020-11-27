@@ -11,8 +11,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
-import hei.project.siteInfoHei.entities.Eleve;
-import hei.project.siteInfoHei.dao.impl.EleveDao;
 
 @WebServlet("/supprmodif")
 public class ModifSupprEleveServlet extends GenericServlet{
