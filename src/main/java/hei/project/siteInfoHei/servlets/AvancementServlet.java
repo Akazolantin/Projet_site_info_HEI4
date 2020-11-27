@@ -16,7 +16,6 @@ import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.B2;
 import hei.project.siteInfoHei.entities.Responsabilité;
 import hei.project.siteInfoHei.entities.Tea;
-import hei.project.siteInfoHei.dao.impl.NNDao;
 
 @WebServlet("/avancement")
 public class AvancementServlet extends GenericServlet{

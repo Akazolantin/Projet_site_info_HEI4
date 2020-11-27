@@ -78,6 +78,12 @@ public class NNDao {
 		}catch(SQLException e) {e.printStackTrace();}
 		return NNtea;
 	}
+	
+	public static void deleteEleve(Integer eleveId) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
+			try (PreparedStatement statement = connection.prepareStatement( "delete from nn where eleve_id=?")) {
+				statement.setInt(1, eleveId); statement.executeUpdate(); } }
+		catch (SQLException e) {e.printStackTrace(); } }
 
 }
 

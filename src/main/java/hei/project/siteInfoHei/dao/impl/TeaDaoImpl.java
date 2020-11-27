@@ -72,7 +72,7 @@ public class TeaDaoImpl implements TeaDao  {
 
 	@Override
 	public Tea addTea(Tea tea) {
-		String sql = "INSERT INTO tea (title, release_date, duration ) VALUES ( ?, ?, ?)";
+		String sql = "INSERT INTO tea (title, release_date, duration, valide ) VALUES ( ?, ?, ?, ?)";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -80,6 +80,7 @@ public class TeaDaoImpl implements TeaDao  {
 				preparedStatement.setString(1, tea.getTitle());
 				preparedStatement.setDate(2, Date.valueOf(tea.getReleaseDate()));
 				preparedStatement.setInt(3, tea.getDuration());
+				preparedStatement.setBoolean(4, tea.getValide());
 				preparedStatement.executeUpdate();
 				ResultSet ids = preparedStatement.getGeneratedKeys();
 				if (ids.next()) {
@@ -90,9 +91,9 @@ public class TeaDaoImpl implements TeaDao  {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		throw new RuntimeException("Erreur lors de la mise à jour du tea");
-	}
+		throw new RuntimeException("Erreur lors de la mise à jour du tea");}
 
+	
     @Override
     public Tea getRandomTea() {
         String sqlQuery = "SELECT * FROM tea ORDER BY RAND() LIMIT 1;";

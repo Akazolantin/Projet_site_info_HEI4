@@ -31,10 +31,7 @@ public class AdminServlet extends GenericServlet{
 	}
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		WebContext context = new WebContext(req, resp, req.getServletContext());
-		String mem=req.getParameter("memoBouton");
-		System.out.println(mem);
 		
-		if(mem==null) {
 		String dom=req.getParameter("domaine");
 		String year=req.getParameter("year");
 		String tripar=req.getParameter("tripar");
@@ -42,6 +39,6 @@ public class AdminServlet extends GenericServlet{
 		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves(tripar,year,dom,rechNom));
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         templateEngine.process("adminhome", context, resp.getWriter());
-	}
+	
         
 }}
