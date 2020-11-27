@@ -1,0 +1,26 @@
+html{ 
+ background-color: white;
+ }
+
+body {
+background: linear-gradient(darkred, white);
+padding: 1em;
+
+
+}
+
+h1 { 
+	background-image:url("Image/Heisalle.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	padding-top: 5em;
+	padding-right: 6em;
+	padding-left: 6em;
+	padding-bottom: 7em;
+	margin: auto;
+
+}
+h2{
+	text-align: center;
+}
