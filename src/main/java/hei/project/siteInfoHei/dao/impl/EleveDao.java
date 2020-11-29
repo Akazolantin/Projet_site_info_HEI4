@@ -50,23 +50,27 @@ public class EleveDao {
 		return eleves;
 	}
 	
-	public static void addEleve(String nom,String prenom, String annee,String dom) {
+	public static int addEleve(String nom,String prenom, String annee,String dom) {
 		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
 			String sqlQuery = "insert into eleve(nom, prenom, year, domaine) VALUES(?,?,?,?)";
-			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
+			try (PreparedStatement statement = connection.prepareStatement( sqlQuery,Statement.RETURN_GENERATED_KEYS)) 
 			{ statement.setString(1, nom); 
 			statement.setString(2, prenom); 
 			int year=Integer.parseInt(annee);
 			statement.setInt(3, year); 
 			statement.setString(4, dom);
 			statement.executeUpdate(); 
+			ResultSet id=statement.getGeneratedKeys();
+			if(id.next()) {return(id.getInt(1));}
 		 } }
 		catch (SQLException e) { e.printStackTrace(); }
+		return 0;
 		}
 		
 	
 	
-	public void delete(Integer eleveId) {
+	public static void delete(Integer eleveId) {
+		NNDao.deleteEleve(eleveId);ListeIdentifiants.deleteEleve(eleveId);
 		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
 			try (PreparedStatement statement = connection.prepareStatement( "delete from eleve where eleve_id=?")) {
 				statement.setInt(1, eleveId); statement.executeUpdate(); } }
@@ -89,6 +93,20 @@ public class EleveDao {
 						resultSet.getInt("eleve_id"));}}
 		}catch(SQLException e) {e.printStackTrace();}
 		return(eleve);
+	}
+	
+	public static void modif(int eleveId,String nom,String prenom, int year,String dom) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+			String sqlQuery = "update eleve set nom=?, prenom=?, year=?, domaine=? WHERE eleve_id=?;";
+			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
+			{ statement.setString(1, nom); 
+			statement.setString(2, prenom); 
+			statement.setInt(3, year); 
+			statement.setString(4, dom);
+			statement.setInt(5, eleveId);
+			statement.executeUpdate(); 
+		 } }
+		catch (SQLException e) { e.printStackTrace(); }
 	}
 		
 	}

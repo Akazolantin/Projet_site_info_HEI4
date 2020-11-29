@@ -1,0 +1,50 @@
+html{
+	background-color: white;
+}
+
+body {
+background-color: darkgrey;
+width: 60%;
+text-align-last: center;
+margin: 0 auto;
+}
+
+
+h1 { 
+text-align: center;
+}
+
+form{	
+	text-align: center;
+	margin: 5em;
+	padding: auto;
+}
+
+input[type=text] {
+  padding: 12px 40px;
+  margin: 8px 0;
+  border: none;
+  border-bottom: 2px solid black;
+  
+
+}
+
+input[type=password] {
+  padding: 12px 40px;
+  margin: 8px 0;
+  border: none;
+  border-bottom: 2px solid black;
+  
+
+}
+input[type=submit]{
+	padding: 12px 40px;
+  	margin: 8px 0;
+	background-color: white; 
+	text-decoration: none;
+	cursor: pointer;
+}
+
+label{
+	color: red;	
+}

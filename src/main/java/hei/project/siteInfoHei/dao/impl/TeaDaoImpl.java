@@ -91,9 +91,9 @@ public class TeaDaoImpl implements TeaDao  {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		throw new RuntimeException("Erreur lors de la mise à jour du tea");
-	}
+		throw new RuntimeException("Erreur lors de la mise à jour du tea");}
 
+	
     @Override
     public Tea getRandomTea() {
         String sqlQuery = "SELECT * FROM tea ORDER BY RAND() LIMIT 1;";

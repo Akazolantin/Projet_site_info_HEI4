@@ -8,13 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.Identifiant;
 
-@WebServlet("/accueil")
+@WebServlet("/Connexion")
 public class PageAccueilServlet extends GenericServlet{
 	String res="";
 	static boolean connecte=false;
@@ -28,7 +33,7 @@ public class PageAccueilServlet extends GenericServlet{
 		context.setVariable("alerte", res);
 		
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-        templateEngine.process("accueil", context, resp.getWriter());
+        templateEngine.process("Connexion", context, resp.getWriter());
         
         if (PageAccueilServlet.getSession()) {
         	PageAccueilServlet.connecte=false;

@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
 import hei.project.siteInfoHei.entities.Identifiant;
 
@@ -19,6 +21,17 @@ public class ListeIdentifiants {
 	public static boolean currentAdmin;
 	public static int IdUtil;
 	
+	public static void addIdent(int eleve_id,String ident, String mdp) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+			String sqlQuery = "insert into identifiant(eleve_id, nomUtil, Mdp, Admin) VALUES(?,?,?,false)";
+			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
+			{ statement.setInt(1, eleve_id); 
+			statement.setString(2, ident);
+			statement.setString(3, mdp);
+			statement.executeUpdate(); 
+		 } }
+		catch (SQLException e) { e.printStackTrace(); }
+		}
 	
 	public static List<Identifiant> listeIdent() {
 		List<Identifiant> Ident = new ArrayList();
@@ -38,11 +51,13 @@ public class ListeIdentifiants {
 		return Ident;
 		}
 	
+	@SuppressWarnings("deprecation")
 	public static boolean checkIdent(String nomUtil, String Mdp) {
 		boolean res=false;
 		for (int i=0; i<listeIdent().size();i++) {
+			Argon2 argon2 = Argon2Factory.create();
 			if(listeIdent().get(i).getNomUtil().equals(nomUtil)) {
-				if(listeIdent().get(i).getMdp().equals(Mdp)) {
+				if(argon2.verify(listeIdent().get(i).getMdp(),Mdp)) {
 					currentNomUtil=listeIdent().get(i).getNomUtil();
 					currentMdp=listeIdent().get(i).getMdp();
 					currentAdmin=listeIdent().get(i).getAdmin();
@@ -54,16 +69,23 @@ public class ListeIdentifiants {
 		return res;
 	}
 	public static void changeMdp(String newMdp) {
+		String hash = hei.project.siteInfoHei.dao.impl.PasswordHash.encrypt(newMdp);
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
 				PreparedStatement statement = cnx.prepareStatement("UPDATE identifiant SET Mdp=? WHERE eleve_id=?;");) {
 				statement.setInt(2,IdUtil);
-				statement.setString(1,newMdp);
+				statement.setString(1,hash);
 				statement.executeUpdate();
 				listeIdent();
-				currentMdp=newMdp;
+				currentMdp=hash;
 				}
 		}catch(SQLException e) {e.printStackTrace();}
 		}
+	
+	public static void deleteEleve(Integer eleveId) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
+			try (PreparedStatement statement = connection.prepareStatement( "delete from identifiant where eleve_id=?")) {
+				statement.setInt(1, eleveId); statement.executeUpdate(); } }
+		catch (SQLException e) {e.printStackTrace(); } }
 	}

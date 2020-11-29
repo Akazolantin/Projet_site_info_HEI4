@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="avancement.css">
 	<body>
-		<h1>Mon avancement des taches</h1><br>
-			<br>
+	<header>
+	<a href="list">Accéder à la liste des TEA</a>
+	<a href="Connexion">Déconnexion</a>
+	<a href="changeMdp">Changer votre mot de passe</a>
+	</header>
+		<h1>Mon avancement des taches</h1>
+		<div class="barreavancement">
 			<label for="barre">Progression des taches:</label>
-			<progress id="barre" max="100" th:value="${point}"></progress><br>
-
-
-
-			<a href="list">accéder à la liste des tea</a><br>
-			
-<a href="accueil">deconnexion</a><br>
-<a href="changeMdp">change votre mot de passe</a>
-
-			<table>
+			<progress id="barre" max="25" th:value="${point}"></progress>
+		</div>
+<h2>Vos taches :</h2>
+<table>
 <tr th:each="tea : ${tea}">
  <td th:value="${tea.id}"></td>
  <td th:text="${tea.title}"></td> 

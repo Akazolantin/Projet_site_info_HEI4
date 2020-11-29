@@ -5,9 +5,23 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form method="post">
  <input name ="nom" type="text" th:placeholder="${eleve.nom}"/>
-<input name ="prenom" type="text" th:placeholder="${eleve.prenom}"/>
-<input name ="année" type="text" th:placeholder="HEI +' '+ ${eleve.year}"/> 
-<input name ="domaine" type="text" th:placeholder="${eleve.domaine}"/> 
+<input name ="prenom" type="text" th:placeholder="${eleve.prenom}"/> 
+<select name="year" size=1>
+<option value=0 selected th:text="HEI +' '+ ${eleve.year}"></option>
+<option value=1>HEI 1</option>
+<option value=2>HEI 2</option>
+<option value=3>HEI 3</option>
+<option value=4>HEI 4</option>
+<option value=5>HEI 5</option>
+</select>
+<select name="domaine" size=1>
+<option value="" selected th:text="${eleve.domaine}"></option>
+<option value="BTP">BTP</option>
+<option value="ITI">ITI</option>
+</select>
+<input type="submit" value="Modif/suppr"/>
+</form>
 </body>
 </html>
