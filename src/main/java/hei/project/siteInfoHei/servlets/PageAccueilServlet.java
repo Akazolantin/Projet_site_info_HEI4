@@ -8,6 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -42,14 +47,11 @@ public class PageAccueilServlet extends GenericServlet{
     	
     	
         WebContext context = new WebContext(req, resp, req.getServletContext());
-    	String nomUtil = req.getParameter("nomUtil"); // On récupere le nom d'utilisateur
-        String Mdp = req.getParameter("Mdp"); // On récupere le mdp
+    	String nomUtil = req.getParameter("nomUtil");
+        String Mdp = req.getParameter("Mdp");
         
         if(ListeIdentifiants.checkIdent(nomUtil,Mdp)) {
         	connecte=true;
-        	//System.out.println(ListeIdentifiants.currentNomUtil);
-        	//System.out.println(ListeIdentifiants.currentMdp);
-        	//System.out.println(ListeIdentifiants.currentAdmin);
         	if(ListeIdentifiants.currentAdmin) {
         	resp.sendRedirect("admin");
         }

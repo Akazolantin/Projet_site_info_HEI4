@@ -66,7 +66,13 @@
 		<dependency> <groupId>org.slf4j</groupId>
 		<artifactId>slf4j-simple</artifactId>
 		<version>1.7.25</version> 
-		</dependency>
+		</dependency>	
+  		<dependency>
+      		<groupId>de.mkammerer</groupId>
+      		<artifactId>argon2-jvm</artifactId>
+      		<version>2.7</version>
+  </dependency>
+		
 
     </dependencies>
     

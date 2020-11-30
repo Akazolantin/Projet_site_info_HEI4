@@ -19,7 +19,7 @@ CREATE TABLE `tea` (
 
 CREATE TABLE `identifiant` (
 	`nomUtil` varchar(30) NOT NULL,
-	`Mdp` varchar(30) NOT NULL,
+	`Mdp` varchar(100) NOT NULL,
 	`Admin` boolean NOT NULL,
     `eleve_id` int(11) NOT NULL,
 	KEY `eleve_id_fkk` (`eleve_id`),

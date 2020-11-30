@@ -35,6 +35,10 @@ public class AddTeaServlet  extends GenericServlet {
 			context.setVariable("TeaDao",listOfTea);
 			context.setVariable("error", errorMessage);
 			
+			 if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
+		    	   resp.sendRedirect("list");
+		       }
+			
 			TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 			templateEngine.process("newtea", context, resp.getWriter());
 			

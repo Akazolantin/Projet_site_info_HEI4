@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 
 
@@ -37,7 +39,8 @@ public class ChangeMdpServlet extends GenericServlet{
 		        WebContext context = new WebContext(req, resp, req.getServletContext());
 		    	String newMdp = req.getParameter("newMdp"); // On récupere le nouveau mdp
 		    	String Mdp = req.getParameter("Mdp");
-		    	if (Mdp.equals(ListeIdentifiants.currentMdp)) {
+		    	Argon2 argon2 = Argon2Factory.create();
+		    	if (argon2.verify(ListeIdentifiants.currentMdp,Mdp)) {
 		    		ListeIdentifiants.changeMdp(newMdp);
 			    	if (ListeIdentifiants.currentAdmin) {
 			    		resp.sendRedirect("admin");

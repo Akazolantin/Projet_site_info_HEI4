@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.Tea;
 import hei.project.siteInfoHei.managers.TeaService;
 
@@ -27,7 +28,9 @@ import hei.project.siteInfoHei.managers.TeaService;
 			WebContext context = new WebContext(req, resp, req.getServletContext());
 			List<Tea> listOfTea = TeaService.getInstance().listTea();
 			context.setVariable("result",listOfTea);
-			
+			if (PageAccueilServlet.getSession()==false ) {
+		    	   resp.sendRedirect("Connexion");
+		       }
 			TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 			templateEngine.process("list", context, resp.getWriter());
 
