@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.Tea;
 import hei.project.siteInfoHei.managers.TeaService;
 
@@ -30,6 +31,10 @@ public class AddTeaServlet  extends GenericServlet {
 			List<Tea> listOfTea = TeaService.getInstance().listTea();
 			context.setVariable("TeaDao",listOfTea);
 			context.setVariable("error", errorMessage);
+			
+			 if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
+		    	   resp.sendRedirect("list");
+		       }
 			
 			TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 			templateEngine.process("newtea", context, resp.getWriter());

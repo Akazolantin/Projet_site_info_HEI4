@@ -20,17 +20,6 @@
     </nav>
     
 
-    <div th:fragment="randomtea">
-        <h4>A random tea:</h4>
-        <div class="well">
-            <h4>[[${randomtea.title}]] </h4>
-            <p>Released on [[${#temporals.format(randomtea.releaseDate, 'd MMMM yyyy')}]]</p>
-            <p>
-                <span class="glyphicon glyphicon-search"></span>
-                <a th:href="${'tea?id='+randomtea.id}"
-                   th:title="${'Details for '+randomtea.title}">See this tea details</a>
-            </p>
-        </div>
-    </div>
+
 </body>
 </html>

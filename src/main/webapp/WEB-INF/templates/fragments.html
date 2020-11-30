@@ -12,7 +12,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
-            
+            	<li th:class="${currentPage == 'avancement'} ? 'active' : ''"><a href="avancement">avancement générale</a></li>
                 <li th:class="${currentPage == 'admin'} ? 'active' : ''"><a href="admin">liste des élèves</a></li>
                 <li th:class="${currentPage == 'list'} ? 'active' : ''"><a href="list">liste des TEA </a></li>
                 <li th:class="${currentPage == 'newtea'} ? 'active' : ''"><a href="newtea">ajouter un nouveau tea</a></li>
@@ -22,17 +22,6 @@
     </nav>
     
 
-    <div th:fragment="randomtea">
-        <h4>A random tea:</h4>
-        <div class="well">
-            <h4>[[${randomtea.title}]] <small th:text="${randomtea.title}"></small></h4>
-            <p>Released on [[${#temporals.format(randomtea.releaseDate, 'd MMMM yyyy')}]]</p>
-            <p>
-                <span class="glyphicon glyphicon-search"></span>
-                <a th:href="${'tea?id='+randomtea.id}"
-                   th:title="${'Details for '+randomtea.title}">See this tea details</a>
-            </p>
-        </div>
-    </div>
+    
 </body>
 </html>
