@@ -20,7 +20,7 @@ public class AdminServlet extends GenericServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
-	    	   resp.sendRedirect("accueil");
+	    	   resp.sendRedirect("Connexion");
 	       }
 		WebContext context = new WebContext(req, resp, req.getServletContext());
 		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves("nom","0","%",""));

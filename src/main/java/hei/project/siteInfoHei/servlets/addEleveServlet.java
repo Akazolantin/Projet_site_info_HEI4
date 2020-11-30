@@ -19,7 +19,7 @@ public class addEleveServlet extends GenericServlet{
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
-	    	   resp.sendRedirect("accueil");
+	    	   resp.sendRedirect("Connexion");
 	       }
 		WebContext context = new WebContext(req, resp, req.getServletContext());
 		 TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());

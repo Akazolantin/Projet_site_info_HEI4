@@ -26,7 +26,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse resp) throws Servl
     currentEleve=hei.project.siteInfoHei.dao.impl.EleveDao.getEleveById(id);
     context.setVariable("eleve", currentEleve);
     if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
-    	   resp.sendRedirect("accueil");
+    	   resp.sendRedirect("Connexion");
        }
    templateEngine.process("ModifSuppr", context, resp.getWriter());
    

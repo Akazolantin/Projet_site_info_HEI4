@@ -29,7 +29,7 @@ public class ChangeMdpServlet extends GenericServlet{
 		        TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 		        
 		        if (PageAccueilServlet.getSession()==false) {
-			    	   resp.sendRedirect("accueil");
+			    	   resp.sendRedirect("Connexion");
 			       }
 		        templateEngine.process("changeMdp", context, resp.getWriter());
 				

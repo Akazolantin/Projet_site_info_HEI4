@@ -79,7 +79,7 @@ public class AvancementServlet extends GenericServlet{
 	        System.out.println(resultfin);
 	        
 	        if (PageAccueilServlet.getSession()==false) {
-		    	   resp.sendRedirect("accueil");
+		    	   resp.sendRedirect("Connexion");
 		       }
 	        templateEngine.process("avancement", context, resp.getWriter());
 		}

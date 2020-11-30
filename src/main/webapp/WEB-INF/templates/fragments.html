@@ -8,7 +8,7 @@
 
     <nav class="navbar navbar-inverse navbar-static-top" th:fragment="menu(currentPage)">
         <div class="navbar-header">
-            <a class="navbar-brand" href="accueil">Site Info HEI</a>
+            <a class="navbar-brand" href="Connexion">Site Info HEI</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
@@ -25,7 +25,7 @@
     <div th:fragment="randomtea">
         <h4>A random tea:</h4>
         <div class="well">
-            <h4>[[${randomtea.title}]] </h4>
+            <h4>[[${randomtea.title}]] <small th:text="${randomtea.title}"></small></h4>
             <p>Released on [[${#temporals.format(randomtea.releaseDate, 'd MMMM yyyy')}]]</p>
             <p>
                 <span class="glyphicon glyphicon-search"></span>
