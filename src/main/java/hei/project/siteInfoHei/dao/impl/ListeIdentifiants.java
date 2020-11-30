@@ -27,7 +27,9 @@ public class ListeIdentifiants {
 			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
 			{ statement.setInt(1, eleve_id); 
 			statement.setString(2, ident);
-			statement.setString(3, mdp);
+			Argon2 argon2 = Argon2Factory.create();
+			String hash = argon2.hash(22, 65536, 1, mdp);
+			statement.setString(3, hash);
 			statement.executeUpdate(); 
 		 } }
 		catch (SQLException e) { e.printStackTrace(); }
