@@ -110,4 +110,17 @@ public class TeaDaoImpl implements TeaDao  {
         }
         return null;
     }
-}
+    
+    public static void valideTea(int TeaId) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+			String sqlQuery = "update tea set valide=true WHERE tea_id=?;";
+			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
+			{
+				statement.setInt(1, TeaId);
+				statement.executeUpdate();
+		 } }
+		catch (SQLException e) { e.printStackTrace(); }
+	}
+    	
+    }
+

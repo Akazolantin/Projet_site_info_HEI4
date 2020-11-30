@@ -40,13 +40,13 @@ public void doPost(HttpServletRequest req, HttpServletResponse resp) throws Serv
 	String dom=req.getParameter("domaine");
 	String year=req.getParameter("year");
 	int annee;
-	if(nom==""&&prenom==""&&dom==""&&year=="") {
+	if(nom.equals("")&&prenom.equals("")&&dom.equals("")&&year.equals("0")) {
 		hei.project.siteInfoHei.dao.impl.EleveDao.delete(id);resp.sendRedirect("admin");	
 		}else {
-		if(nom=="") {nom=currentEleve.getNom();}
-		if(prenom=="") {prenom=currentEleve.getPrenom();}
-		if(dom=="") {dom=currentEleve.getDomaine();}
-		if(year=="0") {annee=currentEleve.getYear();}else {annee=Integer.parseInt(year);}
+		if(nom.equals("")) {nom=currentEleve.getNom();}
+		if(prenom.equals("")) {prenom=currentEleve.getPrenom();}
+		if(dom.equals("")) {dom=currentEleve.getDomaine();}
+		if(year.equals("0")) {annee=currentEleve.getYear();}else {annee=Integer.parseInt(year);}
 		hei.project.siteInfoHei.dao.impl.EleveDao.modif(id, nom, prenom, annee, dom);
 		resp.sendRedirect("admin");
 	}

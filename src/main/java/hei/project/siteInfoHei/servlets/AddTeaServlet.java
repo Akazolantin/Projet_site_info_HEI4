@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.Tea;
 import hei.project.siteInfoHei.managers.TeaService;
 
@@ -23,6 +24,9 @@ public class AddTeaServlet  extends GenericServlet {
 
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
+		    	   resp.sendRedirect("Connexion");
+		       }
 			String errorMessage = (String) req.getSession().getAttribute("errorMessage");
 			req.getSession().removeAttribute("errorMessage");
 

@@ -36,12 +36,12 @@
 							<td><p th:text="${tea.duration}">heure(s)</p></td>
 							
 							<td th:text="${tea.valide}">True</td>
+							<td> <a th:href="@{/tea(id=${tea.id})}">details</a></td>
 							
 						</tr>
 					
 				</table>
 			</div>
-			<div class="col-md-4" th:insert="~{fragments::randomtea}"></div>
     	</div>
 	</div>
 			 </form>
