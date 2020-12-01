@@ -1,14 +1,8 @@
-package hei.project.siteInfoHei.dao.impl;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
+package hei.project.siteInfoHei.managers;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import de.mkammerer.argon2.Argon2Helper;
+import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
 
 public class PasswordHash extends DataSourceProvider{
 	
