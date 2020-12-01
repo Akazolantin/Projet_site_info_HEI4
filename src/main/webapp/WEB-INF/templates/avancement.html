@@ -16,11 +16,11 @@
 <h2>Vos taches :</h2>
 <table>
 <tr th:each="tea : ${tea}">
- <td th:value="${tea.id}"></td>
+ <td th:text="${tea.id}"></td>
  <td th:text="${tea.title}"></td> 
- <td th:date="${tea.releaseDate}"></td>
- <td th:value="${tea.duration}"></td>
- <td th:boolean="${tea.valide}"></td> 
+ <td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}"></td>
+ <td th:text="${tea.duration}"></td>
+ <td th:text="${tea.valide}"></td> 
  </tr>
  </table>
 
