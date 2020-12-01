@@ -20,7 +20,9 @@ import java.io.IOException;
 	    @Override
 	    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	        WebContext context = new WebContext(req, resp, req.getServletContext());
-
+	        if (PageAccueilServlet.getSession()==false) {
+		    	   resp.sendRedirect("Connexion");
+		       }
 	        teaId = Integer.parseInt(req.getParameter("id"));
 	        Tea tea = TeaService.getInstance().getTea(teaId);
 	        context.setVariable("tea", tea);
