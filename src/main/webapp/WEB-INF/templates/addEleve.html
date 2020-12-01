@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="css/ajouteleve.css">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-Page de création d'élèves
+<header>
+<a href="admin">Retour</a>
+</header>
+<h1>Page de création d'élèves</h1>
 
 <form method="post">
 
@@ -28,9 +32,8 @@ Domaine
 <option value="BTP">BTP</option>
 <option value="ITI">ITI</option>
 </select>
-<input type="submit" value="Création">
+<input type="submit" value="Créer">
 </form>
 <label th:text="${message}"></label>
-<a href="admin">Retour</a>
 </body>
 </html>
