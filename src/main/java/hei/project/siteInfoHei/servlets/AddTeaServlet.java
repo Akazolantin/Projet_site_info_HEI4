@@ -34,6 +34,7 @@ public class AddTeaServlet  extends GenericServlet {
 			List<Tea> listOfTea = TeaService.getInstance().listTea();
 			context.setVariable("TeaDao",listOfTea);
 			context.setVariable("error", errorMessage);
+			context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 			
 			 if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
 		    	   resp.sendRedirect("list");

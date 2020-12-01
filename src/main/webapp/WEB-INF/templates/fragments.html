@@ -12,14 +12,16 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
-            	<li th:class="${currentPage == 'avancement'} ? 'active' : ''"><a href="avancement">avancement générale</a></li>
-                <li th:class="${currentPage == 'admin'} ? 'active' : ''"><a href="admin">liste des élèves</a></li>
-                <li th:class="${currentPage == 'list'} ? 'active' : ''"><a href="list">liste des TEA </a></li>
-                <li th:class="${currentPage == 'newtea'} ? 'active' : ''"><a href="newtea">ajouter un nouveau tea</a></li>
+            	<li th:unless="${currentAdmin} "><a href="avancement">avancement generale </a></li>
+				<li th:unless="${!currentAdmin} "><a href="admin">liste des élèves </a></li>
+				<li th:unless="${!currentAdmin} "><a href="newtea">ajouter un nouveau tea</a></li>
+                <li th:if="${currentPage == 'list'} ? 'active' : ''"><a href="list">liste des TEA </a></li>
+                
   
             </ul>
         </div>
     </nav>
+    
     
 
     

@@ -28,6 +28,7 @@ import hei.project.siteInfoHei.managers.TeaService;
 			WebContext context = new WebContext(req, resp, req.getServletContext());
 			List<Tea> listOfTea = TeaService.getInstance().listTea();
 			context.setVariable("result",listOfTea);
+			context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 			if (PageAccueilServlet.getSession()==false ) {
 		    	   resp.sendRedirect("Connexion");
 		       }

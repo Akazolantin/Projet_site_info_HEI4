@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="avancement.css">
 	<body>
 	<header>
-	<a href="list">Accéder à la liste des TEA</a>
+	<nav th:replace="~{fragments::menu('list')}"></nav>
 	<a href="Connexion">Déconnexion</a>
 	<a href="changeMdp">Changer votre mot de passe</a>
 	</header>
@@ -11,7 +11,7 @@
 		<div class="barreavancement">
 			<label for="barre">Progression des taches:</label>
 			<progress id="barre" max="25" th:value="${point}"></progress>
-			<a href="list">accéder à la liste des tea</a>
+			
 			<a href="Connexion">deconnexion</a>
 			<a href="changeMdp">change votre mot de passe</a>
 		</div>
