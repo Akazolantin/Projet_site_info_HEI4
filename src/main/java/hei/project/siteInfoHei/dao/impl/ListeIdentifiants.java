@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import hei.project.siteInfoHei.entities.Identifiant;
+import hei.project.siteInfoHei.managers.PasswordHash;
 
 public class ListeIdentifiants {
 	public static String currentNomUtil;
@@ -50,14 +51,12 @@ public class ListeIdentifiants {
 		}catch(SQLException e) {e.printStackTrace();}
 		return Ident;
 		}
-	
-	@SuppressWarnings("deprecation")
+
 	public static boolean checkIdent(String nomUtil, String Mdp) {
 		boolean res=false;
 		for (int i=0; i<listeIdent().size();i++) {
-			Argon2 argon2 = Argon2Factory.create();
 			if(listeIdent().get(i).getNomUtil().equals(nomUtil)) {
-				if(argon2.verify(listeIdent().get(i).getMdp(),Mdp)) {
+				if(PasswordHash.verify(listeIdent().get(i).getMdp(),Mdp)) {
 					currentNomUtil=listeIdent().get(i).getNomUtil();
 					currentMdp=listeIdent().get(i).getMdp();
 					currentAdmin=listeIdent().get(i).getAdmin();

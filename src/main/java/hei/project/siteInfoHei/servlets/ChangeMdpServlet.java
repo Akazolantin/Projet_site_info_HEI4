@@ -13,6 +13,7 @@ import org.thymeleaf.context.WebContext;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+import hei.project.siteInfoHei.managers.PasswordHash;
 
 
 
@@ -39,8 +40,7 @@ public class ChangeMdpServlet extends GenericServlet{
 		        WebContext context = new WebContext(req, resp, req.getServletContext());
 		    	String newMdp = req.getParameter("newMdp"); // On récupere le nouveau mdp
 		    	String Mdp = req.getParameter("Mdp");
-		    	Argon2 argon2 = Argon2Factory.create();
-		    	if (argon2.verify(ListeIdentifiants.currentMdp,Mdp)) {
+		    	if (PasswordHash.verify(ListeIdentifiants.currentMdp,Mdp)) {
 		    		ListeIdentifiants.changeMdp(newMdp);
 			    	if (ListeIdentifiants.currentAdmin) {
 			    		resp.sendRedirect("admin");
