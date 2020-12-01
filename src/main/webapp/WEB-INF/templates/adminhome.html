@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="css/adminhome.css">
 <head>
     <meta http-equiv="Content-Type" content="text/html;
 			 charset=UTF-8">
@@ -9,8 +10,14 @@
     
 </head>
 <body>
+<header>
+<a href="addEleve">Ajouter un élève</a>
+<a href="list">Accéder à la liste des TEA</a>
+<a href="Connexion" >Déconnexion</a><br>
+<a href="changeMdp">Changer votre mot de passe</a>
+</header>
 
- 
+<div class="rechercher">
 <form method="post">
 Trier par :
 <select name="tripar" size=1>
@@ -41,6 +48,7 @@ Année
 
 <input type="submit" value="recherche">
 </form>
+</div>
 <table>
 <tr th:each="eleve : ${eleves}">
  <td th:text="${eleve.nom}"></td>
@@ -52,12 +60,6 @@ Année
  </tr>
  
  </table>
-
- <a href="addEleve">Ajouter un élève</a>
- <script type="application/javascript" src="js/Admin.js"></script>
- <a href="list">accéder à la liste des tea</a>
-<a href="Connexion" >deconnexion</a><br>
-<a href="changeMdp">change votre mot de passe</a>
 
 </body>
 </html>
