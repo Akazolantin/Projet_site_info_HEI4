@@ -1,0 +1,26 @@
+html{
+	background-color: darkgrey;
+}
+
+header {
+	width: 100%;
+	background-color: black;
+	text-align: right;
+	padding-bottom: 1em;
+	padding-top: 1em;
+}
+a{
+	color: white;
+	padding: 0.3em
+}
+body{ 
+background-color: darkgrey;
+margin: 0
+}
+h1{
+	text-align: center;
+}
+.rechercher{
+	text-align: center;
+	padding: 2em;
+}

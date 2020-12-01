@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
 import hei.project.siteInfoHei.entities.Identifiant;
 
 public class ListeIdentifiants {
@@ -27,8 +26,7 @@ public class ListeIdentifiants {
 			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
 			{ statement.setInt(1, eleve_id); 
 			statement.setString(2, ident);
-			Argon2 argon2 = Argon2Factory.create();
-			String hash = argon2.hash(22, 65536, 1, mdp);
+			String hash = PasswordHash.encrypt(mdp);
 			statement.setString(3, hash);
 			statement.executeUpdate(); 
 		 } }
@@ -71,7 +69,7 @@ public class ListeIdentifiants {
 		return res;
 	}
 	public static void changeMdp(String newMdp) {
-		String hash = hei.project.siteInfoHei.dao.impl.PasswordHash.encrypt(newMdp);
+		String hash = PasswordHash.encrypt(newMdp);
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();

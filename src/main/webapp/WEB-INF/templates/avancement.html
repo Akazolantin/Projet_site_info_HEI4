@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" href="avancement.css">
+<link rel="stylesheet" type="text/css" href="css/avancement.css">
 	<body>
 	<header>
 	<nav th:replace="~{fragments::menu('list')}"></nav>
@@ -11,19 +11,17 @@
 		<div class="barreavancement">
 			<label for="barre">Progression des taches:</label>
 			<progress id="barre" max="25" th:value="${point}"></progress>
-			
-			<a href="Connexion">deconnexion</a>
-			<a href="changeMdp">change votre mot de passe</a>
+
 		</div>
 		
 <h2>Vos taches :</h2>
 <table>
 <tr th:each="tea : ${tea}">
- <td th:value="${tea.id}"></td>
+ <td th:text="${tea.id}"></td>
  <td th:text="${tea.title}"></td> 
- <td th:date="${tea.releaseDate}"></td>
- <td th:value="${tea.duration}"></td>
- <td th:boolean="${tea.valide}"></td> 
+ <td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}"></td>
+ <td th:text="${tea.duration}"></td>
+ <td th:text="${tea.valide}"></td> 
  </tr>
  </table>
 
