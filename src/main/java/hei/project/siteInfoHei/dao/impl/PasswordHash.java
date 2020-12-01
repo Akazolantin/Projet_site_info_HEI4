@@ -17,4 +17,9 @@ public class PasswordHash extends DataSourceProvider{
 		String hash = argon2.hash(17, 65536, 1, Mdp);
 		return hash;
 		}
+	
+	public static boolean verify(String hash, String mdp) {
+		Argon2 argon2 = Argon2Factory.create();
+		return argon2.verify(hash, mdp);
+	}
 	}
