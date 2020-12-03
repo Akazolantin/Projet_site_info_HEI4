@@ -13,13 +13,17 @@ import javax.sql.DataSource;
 
 import hei.project.siteInfoHei.dao.TeaDao;
 import hei.project.siteInfoHei.entities.Tea;
+import hei.project.siteInfoHei.servlets.PageAccueilServlet;
+import hei.project.siteInfoHei.dao.impl.NNDao;
 
 public class TeaDaoImpl implements TeaDao  {
 
 	@Override
 	public List<Tea> listTea() {
 		List<Tea> result = new ArrayList<>();
-		String sql="SELECT * FROM tea WHERE valide IS NOT NULL ORDER BY title";
+		String sql="SELECT * FROM tea WHERE valide=false ";
+		if (!ListeIdentifiants.currentAdmin) {sql+=" AND release_date > CURRENT_DATE() ";}
+		sql+="ORDER BY title;";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -30,7 +34,8 @@ public class TeaDaoImpl implements TeaDao  {
 				ResultSet resultSet=statement.executeQuery();
 				
 				while(resultSet.next()) {
-					result.add(createTeaFromResultSet(resultSet));
+					if(NNDao.checkNombreParticipant(resultSet.getInt("tea_id"))<resultSet.getInt("nbrDispo") && !ListeIdentifiants.currentAdmin) {
+					result.add(createTeaFromResultSet(resultSet));}else {result.add(createTeaFromResultSet(resultSet));}
 				}
 			}
 		} catch (SQLException e) {
@@ -66,13 +71,15 @@ public class TeaDaoImpl implements TeaDao  {
 				resultSet.getString("title"),
 				resultSet.getDate("release_date").toLocalDate(),
 				resultSet.getInt("duration"),
-				resultSet.getBoolean("valide"));
+				resultSet.getBoolean("valide"),
+				resultSet.getInt("nbrDispo"));
+				
 	
 	}
 
 	@Override
 	public Tea addTea(Tea tea) {
-		String sql = "INSERT INTO tea (title, release_date, duration, valide ) VALUES ( ?, ?, ?, ?)";
+		String sql = "INSERT INTO tea (title, release_date, duration, valide,nbrDispo ) VALUES ( ?, ?, ?, ?,?)";
 		try {
 			DataSource dataSource = DataSourceProvider.getDataSource();
 			try (Connection cnx = dataSource.getConnection();
@@ -81,6 +88,7 @@ public class TeaDaoImpl implements TeaDao  {
 				preparedStatement.setDate(2, Date.valueOf(tea.getReleaseDate()));
 				preparedStatement.setInt(3, tea.getDuration());
 				preparedStatement.setBoolean(4, tea.getValide());
+				preparedStatement.setInt(5, tea.getNbrDispo());
 				preparedStatement.executeUpdate();
 				ResultSet ids = preparedStatement.getGeneratedKeys();
 				if (ids.next()) {
