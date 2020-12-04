@@ -1,5 +1,6 @@
 package hei.project.siteInfoHei.managers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import hei.project.siteInfoHei.dao.TeaDao;
@@ -26,31 +27,37 @@ public class TeaService {
 			return teaDao.listTea();
 		}
 
-		public Tea getTea(Integer id) {
+		public Tea getTea(int id) {
 			return teaDao.getTea(id);
 		}
-
-		public Tea getRandomTea() {
-			return teaDao.getRandomTea();
+		
+		public Tea modifTea(int id,String title,LocalDate releaseDate, int duration,Boolean valide) {
+			return teaDao.modifTea(id,title,releaseDate, duration,valide);
 		}
+		
+		
+
 		public Tea addTea(Tea tea) {
 			if(tea == null) {
-				throw new IllegalArgumentException("The tea can not be null.");
+				throw new IllegalArgumentException("Le TEA ne peut pas être nul.");
 			}
 			if (tea.getTitle() == null || "".equals(tea.getTitle())) {
-				throw new IllegalArgumentException("A tea must have a title.");
+				throw new IllegalArgumentException("Un TEA doit avoir un titre.");
 			}
 			if (tea.getReleaseDate() == null) {
-				throw new IllegalArgumentException("A tea must have a release date.");
+				throw new IllegalArgumentException("Un TEA doit avoir une date.");
 			}
 
 			if (tea.getDuration() == null) {
-				throw new IllegalArgumentException("A tea must have a duration.");
+				throw new IllegalArgumentException("Un TEA doit avoir une durée.");
 			}
-			if (tea.getValide() == null) {
-				throw new IllegalArgumentException("A tea must have a disponible or not.");
+			
+			if (tea.getNbrDispo() == null) {
+				throw new IllegalArgumentException("Un TEA doit avoir un nombre de place disponible.");
 			}
+			
 			return teaDao.addTea(tea);
 		}
 
+	
 }

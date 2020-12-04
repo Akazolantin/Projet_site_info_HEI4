@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-	<nav th:replace="~{fragments::menu('newtea')}"></nav>
+	<nav th:replace="~{fragments::menu('modiftea')}"></nav>
 	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<h3>Ajouter un nouveau tea</h3>
+				<h3>Modifier un tea</h3>
 				<div  class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
 				<form method="post" class="form-horizontal">
 					<div class="form-group">
 						<label for="title" class="col-sm-2 control-label">Titre</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" name="title" id="title">
+							<input name ="title" type="text" th:placeholder="${tea.title}" id="title"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="releaseDate" class="col-sm-2 control-label">Date</label>
 						<div class="col-sm-3">
-							<input type="date" class="form-control" name="releaseDate" id="releaseDate">
+							<input type="date" class="form-control" name="releaseDate" th:placeholder="${tea.releaseDate}"  id="releaseDate">
 						</div>
 					</div>
 					
@@ -31,19 +31,12 @@
 						<label for="duration" class="col-sm-2 control-label">Durée</label>
 						<div class="col-sm-3">
 							<div class="input-group">
-							  <input type="number" class="form-control" name="duration" id="duration">
+							  <input type="number" class="form-control" name="duration" th:placeholder="${tea.duration}"  id="duration">
 							  <span class="input-group-addon">heures</span>
 							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="nbrDispo" class="col-sm-2 control-label">Nombre de personnes</label>
-						<div class="col-sm-3">
-							<div class="input-group">
-							  <input type="number" class="form-control" name="nbrDispo" id="nbrDispo">
-							</div>
-						</div>
-					</div>
+					
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<input class="btn btn-primary" type="submit" value="Enregistrer">

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class TeaDaoImpl implements TeaDao  {
 	}
 
 	@Override
-	public Tea getTea(Integer id) {
+	public Tea getTea(int id) {
 		Tea tea = null;
 		String sql = "SELECT * FROM tea WHERE tea_id=?";
 		try {
@@ -106,23 +107,7 @@ public class TeaDaoImpl implements TeaDao  {
 		throw new RuntimeException("Erreur lors de la mise à jour du tea");}
 
 	
-    @Override
-    public Tea getRandomTea() {
-        String sqlQuery = "SELECT * FROM tea ORDER BY RAND() LIMIT 1;";
-        try(Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-            try (Statement statement = connection.createStatement()) {
-                try(ResultSet resultSet = statement.executeQuery(sqlQuery)) {
-                    if (resultSet.next()) {
-                        return createTeaFromResultSet(resultSet);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    
+
     public static void valideTea(int TeaId) {
 		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
 			String sqlQuery = "update tea set valide=true WHERE tea_id=?;";
@@ -133,6 +118,26 @@ public class TeaDaoImpl implements TeaDao  {
 		 } }
 		catch (SQLException e) { e.printStackTrace(); }
 	}
+    
+    
+    
+    public Tea modifTea (int id,String title,LocalDate releaseDate, int duration,Boolean valide) {
+    	Tea tea = null;
+    	try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+			String sqlQuery = "update tea set title=?, release_date=?, duration=?, valide=? WHERE tea_id=?;";
+			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
+			{ 
+			statement.setString(1, title); 
+			statement.setDate(2, Date.valueOf(releaseDate)); 
+			statement.setInt(3, duration); 
+			statement.setBoolean(4, valide);
+			statement.setInt(5, id);
+			statement.executeUpdate();
+		 } }
+		catch (SQLException e) { e.printStackTrace(); }
+		return tea;
+	}
+		
     	
     }
 

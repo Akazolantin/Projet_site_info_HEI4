@@ -9,10 +9,10 @@ public class Tea {
 		private LocalDate releaseDate;
 		private Integer duration;
 		private Boolean valide;
-		private int nbrDispo;
+		private Integer nbrDispo;
 
 
-		public Tea(Integer id, String title, LocalDate releaseDate, Integer duration, Boolean valide, int nbrDispo) {
+		public Tea(Integer id, String title, LocalDate releaseDate, Integer duration, Boolean valide, Integer nbrDispo) {
 			super();
 			this.id = id;
 			this.title = title;
@@ -23,12 +23,12 @@ public class Tea {
 		}
 
 
-		public int getNbrDispo() {
+		public Integer getNbrDispo() {
 			return nbrDispo;
 		}
 
 
-		public void setNbrDispo(int nbrDispo) {
+		public void setNbrDispo(Integer nbrDispo) {
 			this.nbrDispo = nbrDispo;
 		}
 

@@ -2,20 +2,9 @@ html{
 	background-color: darkgrey;
 }
 
-header {
-	width: 100%;
-	background-color: black;
-	text-align: right;
-	padding-bottom: 1em;
-	padding-top: 1em;
-}
-a{
-	color: white;
-	padding: 0.3em
-}
 body{ 
-background-color: darkgrey;
-margin: 0
+	background-color: darkgrey;
+	margin: 0
 }
 table, th , td{
 	border: 1px solid black;
@@ -33,7 +22,7 @@ td{
 	padding: 1em;
 }
 
-.recherche{
+.rechercher{
 	text-align: center;
 	padding: 2em;
 }
