@@ -1,66 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" href="css/adminhome.css">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;
-			 charset=UTF-8">
-    <title>Page admin</title>
-    
-	
-    
+
+<link rel="stylesheet" type="text/css" href="css/adminhome.css" />
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Page admin</title>
+
+
+<script type="application/javascript" src="js/adminHome.js"></script>
 </head>
 <body>
-	
 
 
-<header>
-<nav th:replace="~{fragments::menu('admin')}"></nav>
-</header>
+
+	<header>
+		<nav th:replace="~{fragments::menu('admin')}"></nav>
+	</header>
 
 
-<div class="rechercher">
-<form method="post">
-Trier par :
-<select name="tripar" size=1>
-<option value="nom" selected>nom (par défaut)</option>
-<option value="prenom">prenom</option>
-<option value="year">année</option>
-<option value="domaine">domaine</option>
-</select>
+	<div class="rechercher">
+		<form method="post">
+			Trier par : <select name="tripar" size=1>
+				<option value="nom" selected>nom (par défaut)</option>
+				<option value="prenom">prenom</option>
+				<option value="year">année</option>
+				<option value="domaine">domaine</option>
+			</select> Domaine <select name="domaine" size=1>
+				<option value="%" selected>pas de selection</option>
+				<option value="BTP">BTP</option>
+				<option value="ITI">ITI</option>
+			</select> Année <select name="year" size=1>
+				<option value=0 selected>pas de selection</option>
+				<option value=1>HEI 1</option>
+				<option value=2>HEI 2</option>
+				<option value=3>HEI 3</option>
+				<option value=4>HEI 4</option>
+				<option value=5>HEI 5</option>
+			</select> <input type="text" name="rechNom" id="rechNom"> <input
+				type="submit" value="recherche">
+		</form>
+	</div>
+	<table>
+		<tr th:each="eleve : ${eleves}">
+			<td th:text="${eleve.nom}"></td>
+			<td th:text="${eleve.prenom}"></td>
+			<td th:text="HEI +' '+ ${eleve.year}"></td>
+			<td th:text="${eleve.domaine}"></td>
+			<td><a th:href="@{/supprmodif(id=${eleve.eleve_id})}">modifier</a></td>
+			<td><a href="#"
+				th:onclick="'deleteEleve('+${eleve.eleve_id}+')'">Supprimer</a></td>
+			<td><a th:href="@{/avancement(id=${eleve.eleve_id})}">details</a></td>
+		</tr>
 
-Domaine
-<select name="domaine" size=1>
-<option value="%" selected>pas de selection</option>
-<option value="BTP">BTP</option>
-<option value="ITI">ITI</option>
-</select>
-
-Année
-<select name="year" size=1>
-<option value=0 selected>pas de selection</option>
-<option value=1>HEI 1</option>
-<option value=2>HEI 2</option>
-<option value=3>HEI 3</option>
-<option value=4>HEI 4</option>
-<option value=5>HEI 5</option>
-</select>
-
-<input type="text" name="rechNom" id="rechNom">
-
-<input type="submit" value="recherche">
-</form>
-</div>
-<table>
-<tr th:each="eleve : ${eleves}">
- <td th:text="${eleve.nom}"></td>
- <td th:text="${eleve.prenom}"></td> 
- <td th:text="HEI +' '+ ${eleve.year}"></td>
- <td th:text="${eleve.domaine}"></td> 
- <td><a th:href="@{/supprmodif(id=${eleve.eleve_id})}">modifier/supprimer</a></td>
- <td> <a th:href="@{/avancement(id=${eleve.eleve_id})}">details</a></td>
- </tr>
- 
- </table>
+	</table>
 
 </body>
 </html>
