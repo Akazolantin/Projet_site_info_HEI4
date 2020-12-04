@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Site Info HEI</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+	<!-- Navigation menu -->
+	<nav th:replace="~{fragments::menu('modiftea')}"></nav>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<h3>Modifier un tea</h3>
+				<div  class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
+				<form method="post" class="form-horizontal">
+					<div class="form-group">
+						<label for="title" class="col-sm-2 control-label">Titre</label>
+						<div class="col-sm-10">
+							<input name ="title" type="text" th:placeholder="${tea.title}" id="title"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="releaseDate" class="col-sm-2 control-label">Date</label>
+						<div class="col-sm-3">
+							<input type="date" class="form-control" name="releaseDate" th:placeholder="${tea.releaseDate}"  id="releaseDate">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="duration" class="col-sm-2 control-label">Durée</label>
+						<div class="col-sm-3">
+							<div class="input-group">
+							  <input type="number" class="form-control" name="duration" th:placeholder="${tea.duration}"  id="duration">
+							  <span class="input-group-addon">heures</span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input class="btn btn-primary" type="submit" value="Enregistrer">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

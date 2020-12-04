@@ -1,5 +1,6 @@
 package hei.project.siteInfoHei.managers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import hei.project.siteInfoHei.dao.TeaDao;
@@ -26,13 +27,14 @@ public class TeaService {
 			return teaDao.listTea();
 		}
 
-		public Tea getTea(Integer id) {
+		public Tea getTea(int id) {
 			return teaDao.getTea(id);
 		}
-
-		public Tea getRandomTea() {
-			return teaDao.getRandomTea();
+		
+		public Tea modifTea(int id,String title,LocalDate releaseDate, int duration,Boolean valide) {
+			return teaDao.modifTea(id,title,releaseDate, duration,valide);
 		}
+
 		public Tea addTea(Tea tea) {
 			if(tea == null) {
 				throw new IllegalArgumentException("The tea can not be null.");
@@ -50,7 +52,9 @@ public class TeaService {
 			if (tea.getValide() == null) {
 				throw new IllegalArgumentException("A tea must have a disponible or not.");
 			}
+			
 			return teaDao.addTea(tea);
 		}
 
+	
 }

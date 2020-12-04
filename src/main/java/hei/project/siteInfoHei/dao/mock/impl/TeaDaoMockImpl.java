@@ -26,7 +26,7 @@ public class TeaDaoMockImpl implements TeaDao{
 	}
 
 	@Override
-	public Tea getTea(Integer id) {
+	public Tea getTea(int id) {
 		return teaList.get(id);
 	}
 
@@ -37,10 +37,12 @@ public class TeaDaoMockImpl implements TeaDao{
 		teaList.put(id, tea);
 		return tea;
 	}
+
 	@Override
-	public Tea getRandomTea() {
+	public Tea modifTea(int id, String title, LocalDate releaseDate, int duration, Boolean valide) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	
 }
