@@ -133,6 +133,13 @@ public class TeaDaoImpl implements TeaDao  {
 		catch (SQLException e) { e.printStackTrace(); }
 		return tea;
 	}
+    
+    public static void deleteTEA(Integer TeaId) {
+		NNDao.deleteTea(TeaId);
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
+			try (PreparedStatement statement = connection.prepareStatement( "delete from tea where tea_id=?")) {
+				statement.setInt(1, TeaId); statement.executeUpdate(); } }
+		catch (SQLException e) {e.printStackTrace(); } }
 		
     	
     }

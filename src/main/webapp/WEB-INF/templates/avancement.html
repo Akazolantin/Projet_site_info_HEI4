@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="css/avancement.css">
-	<body>
+<body>
 	<header>
-	<nav th:replace="~{fragments::menu('avancement')}"></nav>
+		<nav th:replace="~{fragments::menu('avancement')}"></nav>
 	</header>
-		<h1>Mon avancement des taches</h1>
-		<div class="barreavancement">
-			<label for="barre">Progression des taches:</label>
-			<progress id="barre" max="25" th:value="${point}"></progress>
+	<h1>Mon avancement des taches</h1>
+	<div class="barreavancement">
+		<label for="barre">Progression des taches:</label>
+		<progress id="barre" max="25" th:value="${point}"></progress>
 
-		</div>
-		
-<h2>Vos taches :</h2>
-<table>
-<tr th:each="tea : ${tea}">
- <td th:text="${tea.id}"></td>
- <td th:text="${tea.title}"></td> 
- <td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}"></td>
- <td th:text="${tea.duration}"></td>
- <td th:text="${tea.valide}"></td> 
- </tr>
- </table>
+	</div>
+
+	<h2>Vos taches :</h2>
+	<table>
+		<tr th:each="tea : ${tea}">
+			<td th:text="${tea.id}"></td>
+			<td th:text="${tea.title}"></td>
+			<td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}"></td>
+			<td th:text="${tea.duration}"></td>
+			<td th:text="${tea.valide}"></td>
+		</tr>
+	</table>
 
 </body>
 </html>

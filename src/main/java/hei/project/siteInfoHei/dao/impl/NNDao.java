@@ -97,6 +97,12 @@ public class NNDao {
 		catch (SQLException e) {e.printStackTrace(); }
 		return nbr;}
 	
+	public static void deleteTea(Integer TeaId) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
+			try (PreparedStatement statement = connection.prepareStatement( "delete from nn where tea_id=?")) {
+				statement.setInt(1, TeaId); statement.executeUpdate(); } }
+		catch (SQLException e) {e.printStackTrace(); } }
+	
 			
 	}
 
