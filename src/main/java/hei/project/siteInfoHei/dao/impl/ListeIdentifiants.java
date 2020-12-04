@@ -12,8 +12,8 @@ import javax.sql.DataSource;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
+import hei.project.siteInfoHei.Service.PasswordHash;
 import hei.project.siteInfoHei.entities.Identifiant;
-import hei.project.siteInfoHei.managers.PasswordHash;
 
 public class ListeIdentifiants {
 	public static String currentNomUtil;

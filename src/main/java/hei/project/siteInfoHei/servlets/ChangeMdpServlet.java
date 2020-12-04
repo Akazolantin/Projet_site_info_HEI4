@@ -12,8 +12,8 @@ import org.thymeleaf.context.WebContext;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
+import hei.project.siteInfoHei.Service.PasswordHash;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
-import hei.project.siteInfoHei.managers.PasswordHash;
 
 
 

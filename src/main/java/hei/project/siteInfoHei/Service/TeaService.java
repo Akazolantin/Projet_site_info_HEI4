@@ -1,4 +1,4 @@
-package hei.project.siteInfoHei.managers;
+package hei.project.siteInfoHei.Service;
 
 import java.time.LocalDate;
 import java.util.List;

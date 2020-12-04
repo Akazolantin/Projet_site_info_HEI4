@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import hei.project.siteInfoHei.Service.TeaService;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.Tea;
-import hei.project.siteInfoHei.managers.TeaService;
 
 @WebServlet("/modiftea")
 public class ModifTeaServlet extends GenericServlet {
@@ -29,6 +29,7 @@ public class ModifTeaServlet extends GenericServlet {
         id = Integer.parseInt(req.getParameter("id"));
 	    teaId= TeaService.getInstance().getTea(id);
         context.setVariable("tea", teaId);
+        context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
         
 	  
 	    if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {

@@ -1,4 +1,4 @@
-package hei.project.siteInfoHei.managers;
+package hei.project.siteInfoHei.Service;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -16,4 +16,4 @@ public class PasswordHash extends DataSourceProvider{
 		Argon2 argon2 = Argon2Factory.create();
 		return argon2.verify(hash, mdp);
 	}
-	}
+}

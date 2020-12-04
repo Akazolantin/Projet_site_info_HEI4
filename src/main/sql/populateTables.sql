@@ -14,6 +14,8 @@ INSERT INTO `identifiant`(`nomUtil`,`Mdp`,`Admin`,`eleve_id`) VALUES ('Eliott' ,
 INSERT INTO `tea`(`title`,`release_date`,`duration`,`valide`,`nbrDispo`) VALUES ('Forum HEI' ,'2019-10-10' ,2,true,5);
 INSERT INTO `tea`(`title`,`release_date`,`duration`,`valide`,`nbrDispo`) VALUES ('Salon Marseille' ,'2020-10-12' ,4,false,10);
 INSERT INTO `tea`(`title`,`release_date`,`duration`,`valide`,`nbrDispo`) VALUES ('Aide une asso avec un moyen de locomotion' ,'2020-10-06',3,true,6);
+INSERT INTO `tea`(`title`,`release_date`,`duration`,`valide`,`nbrDispo`) VALUES ('Aide une ammsso avec un moyen de locomotion' ,'2020-10-06',3,false,6);
 
 INSERT INTO `nn`(`tea_id`,`eleve_id`)VALUES (1,1);
 INSERT INTO `nn`(`tea_id`,`eleve_id`)VALUES (3,1);
+
