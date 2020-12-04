@@ -1,4 +1,4 @@
-package hei.project.siteInfoHei.managers;
+package hei.project.siteInfoHei.Service;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;

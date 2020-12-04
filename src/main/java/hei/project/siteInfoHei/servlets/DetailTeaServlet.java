@@ -3,12 +3,12 @@ package hei.project.siteInfoHei.servlets;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+import hei.project.siteInfoHei.Service.TeaService;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.dao.impl.NNDao;
 import hei.project.siteInfoHei.dao.impl.TeaDaoImpl;
 
 import hei.project.siteInfoHei.entities.Tea;
-import hei.project.siteInfoHei.managers.TeaService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
