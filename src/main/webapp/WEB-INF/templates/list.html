@@ -36,7 +36,7 @@
 							<td><p th:text="${tea.duration}">heure(s)</p></td>
 							
 							<td th:text="${tea.valide}">True</td>
-							 <td><a th:href="@{/modiftea(id=${tea.id})}">modifier</a></td>
+							 <td th:unless="${!currentAdmin} "><a th:href="@{/modiftea(id=${tea.id})}">modifier</a></td>
 							<td> <a th:href="@{/tea(id=${tea.id})}">details</a></td>
 							
 						</tr>

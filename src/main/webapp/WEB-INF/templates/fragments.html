@@ -6,7 +6,7 @@
     <title>Fragments</title>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-static-top" th:fragment="menu(currentAdmin)">
+	<nav class="navbar navbar-inverse navbar-static-top" th:fragment="menu(currentPage)">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
             	<li th:unless="${currentAdmin} "><a href="avancement">avancement generale </a></li>
