@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +86,17 @@ public class NNDao {
 				statement.setInt(1, eleveId); statement.executeUpdate(); } }
 		catch (SQLException e) {e.printStackTrace(); } }
 
-}
+	public static void lienEleveTea(Integer eleveId, Integer teaId) {
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
+			String sqlQuery = "insert into NND(eleve_id, tea_id) VALUES(?,?)";
+			try (PreparedStatement statement = connection.prepareStatement( sqlQuery,Statement.RETURN_GENERATED_KEYS)) 
+			{ statement.setInt(1, eleveId); 
+			statement.setInt(2, teaId); 
+			statement.executeUpdate(); 
+		//	if(id.next()) {return(id.getInt(1));}
+		 } }
+		catch (SQLException e) { e.printStackTrace(); }
+	}
+	}
 
 		

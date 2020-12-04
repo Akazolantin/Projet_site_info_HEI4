@@ -16,4 +16,4 @@ public class PasswordHash extends DataSourceProvider{
 		Argon2 argon2 = Argon2Factory.create();
 		return argon2.verify(hash, mdp);
 	}
-	}
+}
