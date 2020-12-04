@@ -69,7 +69,8 @@ public class NNDao {
 						resultSet1.getString("title"),
 						resultSet1.getDate("release_date").toLocalDate(),
 						resultSet1.getInt("duration"),
-						resultSet1.getBoolean("valide"));
+						resultSet1.getBoolean("valide"),
+						resultSet1.getInt("nbrDispo"));
 					
 				NNtea.add(tea);}}
 				
@@ -84,7 +85,21 @@ public class NNDao {
 			try (PreparedStatement statement = connection.prepareStatement( "delete from nn where eleve_id=?")) {
 				statement.setInt(1, eleveId); statement.executeUpdate(); } }
 		catch (SQLException e) {e.printStackTrace(); } }
+	
+	
+	public static int checkNombreParticipant(int tea_id) {
+		int nbr=0;
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
+			try (PreparedStatement statement = connection.prepareStatement( "select * from nn where tea_id=?")) {
+				statement.setInt(1, tea_id);ResultSet resultSet= statement.executeQuery();
+				while(resultSet.next()) {nbr++;}
+			} }
+		catch (SQLException e) {e.printStackTrace(); }
+		return nbr;}
+	
+			
+	}
 
-}
+
 
 		

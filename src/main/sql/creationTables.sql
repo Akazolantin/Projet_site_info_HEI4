@@ -14,6 +14,7 @@ CREATE TABLE `tea` (
   `release_date` date NOT NULL,
   `duration` int(11) NOT NULL,
   `valide` boolean NOT NULL,
+  `nbrDispo` int(11) NOT NULL,
   PRIMARY KEY (`tea_id`)
 );
 
@@ -36,19 +37,3 @@ CREATE TABLE `NN` (
 	CONSTRAINT `tea_id_f` FOREIGN KEY (`tea_id`) REFERENCES `tea` (`tea_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-CREATE TABLE `B2` (
-	`id` int(11) NOT NULL,
-	`datepassage` date NOT NULL,
-	`score` int(11) NOT NULL,
-	`valide` boolean NOT NULL,
-	PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `Responsabilite` (
-  `resp_id` int(11) NOT NULL,
-  `title` varchar(45) NOT NULL,
-  `release_date` date NOT NULL, 
-  `duration` int(11) NOT NULL,
-  `valide` boolean NOT NULL,
-  PRIMARY KEY (`resp_id`)
- );

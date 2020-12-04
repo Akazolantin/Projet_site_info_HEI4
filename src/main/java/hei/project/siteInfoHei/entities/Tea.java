@@ -9,15 +9,27 @@ public class Tea {
 		private LocalDate releaseDate;
 		private Integer duration;
 		private Boolean valide;
+		private Integer nbrDispo;
 
 
-		public Tea(Integer id, String title, LocalDate releaseDate, Integer duration, Boolean valide) {
+		public Tea(Integer id, String title, LocalDate releaseDate, Integer duration, Boolean valide, Integer nbrDispo) {
 			super();
 			this.id = id;
 			this.title = title;
 			this.releaseDate = releaseDate;
 			this.duration = duration;
 			this.valide = valide;
+			this.nbrDispo=nbrDispo;
+		}
+
+
+		public Integer getNbrDispo() {
+			return nbrDispo;
+		}
+
+
+		public void setNbrDispo(Integer nbrDispo) {
+			this.nbrDispo = nbrDispo;
 		}
 
 
