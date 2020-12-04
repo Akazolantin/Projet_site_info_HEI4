@@ -5,25 +5,15 @@
     <title>Fragments</title>
 </head>
 <body>
-
-    <nav class="navbar navbar-inverse navbar-static-top" th:fragment="menu(currentPage)">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="Connexion">Deconnexion</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
             <ul class="nav navbar-nav">
             	<li th:unless="${currentAdmin} "><a href="avancement">avancement generale </a></li>
 				<li th:unless="${!currentAdmin} "><a href="admin">liste des élèves </a></li>
 				<li th:unless="${!currentAdmin} "><a href="newtea">ajouter un nouveau tea</a></li>
                 <li th:if="${currentPage == 'list'} ? 'active' : ''"><a href="list">liste des TEA </a></li>
+                <li style="float:right"><a href="changeMdp">Changer le mot de passe</a></li>
+                <li style="float:right"><a href="Connexion">Déconexion</a></li>
                 
   
             </ul>
-        </div>
-    </nav>
-    
-    
-
-    
 </body>
 </html>

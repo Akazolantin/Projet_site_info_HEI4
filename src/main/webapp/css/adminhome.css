@@ -14,8 +14,8 @@ a{
 	padding: 0.3em
 }
 body{ 
-background-color: darkgrey;
-margin: 0
+	background-color: darkgrey;
+	margin: 0
 }
 table, th , td{
 	border: 1px solid black;
@@ -33,7 +33,7 @@ td{
 	padding: 1em;
 }
 
-.recherche{
+.rechercher{
 	text-align: center;
 	padding: 2em;
 }
