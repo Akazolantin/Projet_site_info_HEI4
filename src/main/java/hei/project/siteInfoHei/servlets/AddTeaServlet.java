@@ -27,19 +27,9 @@ public class AddTeaServlet  extends GenericServlet {
 			if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
 		    	   resp.sendRedirect("Connexion");
 		       }
-			String errorMessage = (String) req.getSession().getAttribute("errorMessage");
-			req.getSession().removeAttribute("errorMessage");
 
 			WebContext context = new WebContext(req, resp, req.getServletContext());
-			List<Tea> listOfTea = TeaService.getInstance().listTea();
-			context.setVariable("TeaDao",listOfTea);
-			context.setVariable("error", errorMessage);
-			context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
-			
-			 if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
-		    	   resp.sendRedirect("list");
-		       }
-			
+			context.setVariable("message", "");
 			TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 			templateEngine.process("newtea", context, resp.getWriter());
 			
@@ -47,42 +37,28 @@ public class AddTeaServlet  extends GenericServlet {
 
 		@Override
 		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			WebContext context = new WebContext(req, resp, req.getServletContext());
 			String title = req.getParameter("title");
-			Integer duration = null;
-			Boolean valide = null;
-			try {
-				duration = Integer.parseInt(req.getParameter("duration"));
-			} catch (NumberFormatException nfe) {
-			}
-			
-			try {
-				valide = Boolean.parseBoolean(req.getParameter("valide"));
-			} catch (NumberFormatException vpe) {
-			}
-			
+			String duration=req.getParameter("duration");
+			String nbrDispo = req.getParameter("nbrDispo");
 			String releaseDateAsString = req.getParameter("releaseDate");
-			DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			LocalDate releaseDate = null;
-			try {
-				releaseDate = LocalDate.parse(releaseDateAsString, dateFormat);
-			} catch (DateTimeParseException dtpe) {
-			}
-
-			try {
-				Tea newTea = new Tea(null, title, releaseDate, duration,valide);
-				Tea createdTea = TeaService.getInstance().addTea(newTea);
-				// si creation ok on affiche le tea qui vient d'etre cree
-				resp.sendRedirect(String.format("tea?id=%d", createdTea.getId()));
-			}
 			
-			catch(IllegalArgumentException iae) {
-				// Si erreur on ajoute le message d'erreur dans la session et on redirige sur la page de creation
-				req.getSession().setAttribute("errorMessage", iae.getMessage());
-				resp.sendRedirect("newtea");
+			if(title.equals("") || duration.equals("") ||nbrDispo.equals("")||releaseDateAsString.equals("") ) {
+				context.setVariable("message", "La saisie n'est pas valide, veuillez remplir tous les champs.");}
+			else {
+				DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				LocalDate releaseDate = LocalDate.parse(releaseDateAsString, dateFormat);
+				Tea newTea = new Tea(null, title, releaseDate, Integer.parseInt(duration),false,Integer.parseInt(nbrDispo));
+			
+			Tea createdTea = TeaService.getInstance().addTea(newTea);
+			// si creation ok on affiche le tea qui vient d'etre cree
+			context.setVariable("message", "Le TEA a bien été créé et a pour id : "+createdTea.getId());}
+			TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+			templateEngine.process("newtea", context, resp.getWriter());
 			}
 			
 	
 		}
 	
 
-}
+

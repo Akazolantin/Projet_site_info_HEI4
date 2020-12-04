@@ -46,9 +46,15 @@
 				</div>
 			</div>
 			<form method="post">
+			<span th:if="${admin}">
 			<input type="submit" value="Valider" />
+			</span>
+			<span th:block th:unless="${admin}">
+				<span th:block th:unless="${exist}">
+					<input type="submit" value="Selectionner" />
+				</span>
+			</span>
 			</form>
 		</div>
-	</div>
   </body>
 </html>

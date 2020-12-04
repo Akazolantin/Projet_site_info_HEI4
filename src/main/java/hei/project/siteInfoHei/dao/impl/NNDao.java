@@ -70,7 +70,8 @@ public class NNDao {
 						resultSet1.getString("title"),
 						resultSet1.getDate("release_date").toLocalDate(),
 						resultSet1.getInt("duration"),
-						resultSet1.getBoolean("valide"));
+						resultSet1.getBoolean("valide"),
+						resultSet1.getInt("nbrDispo"));
 					
 				NNtea.add(tea);}}
 				
@@ -85,18 +86,66 @@ public class NNDao {
 			try (PreparedStatement statement = connection.prepareStatement( "delete from nn where eleve_id=?")) {
 				statement.setInt(1, eleveId); statement.executeUpdate(); } }
 		catch (SQLException e) {e.printStackTrace(); } }
-
+	
+	
+	public static int checkNombreParticipant(int tea_id) {
+		int nbr=0;
+		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) { 
+			try (PreparedStatement statement = connection.prepareStatement( "select * from nn where tea_id=?")) {
+				statement.setInt(1, tea_id);ResultSet resultSet= statement.executeQuery();
+				while(resultSet.next()) {nbr++;}
+			} }
+		catch (SQLException e) {e.printStackTrace(); }
+		return nbr;}
+	
 	public static void lienEleveTea(Integer eleveId, Integer teaId) {
-		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-			String sqlQuery = "insert into NND(eleve_id, tea_id) VALUES(?,?)";
-			try (PreparedStatement statement = connection.prepareStatement( sqlQuery,Statement.RETURN_GENERATED_KEYS)) 
-			{ statement.setInt(1, eleveId); 
-			statement.setInt(2, teaId); 
-			statement.executeUpdate(); 
-		//	if(id.next()) {return(id.getInt(1));}
-		 } }
-		catch (SQLException e) { e.printStackTrace(); }
-	}
-	}
 
+String sql="SELECT nbrDispo FROM tea WHERE tea_id = ? ;";
+try {
+	DataSource dataSource = DataSourceProvider.getDataSource();
+	try (Connection cnx= dataSource.getConnection();
+		PreparedStatement statement = cnx.prepareStatement(sql);
+			)
+	{
+		statement.setInt(1, teaId);
+		ResultSet resultSet=statement.executeQuery();
+		while(resultSet.next()) {
+		if (checkNombreParticipant(teaId)<((resultSet.getInt("nbrDispo")))) {
+			String sql1="INSERT INTO NN(eleve_id, tea_id) VALUES( ?, ?)";
+			try {
+				PreparedStatement statement1 = cnx.prepareStatement(sql1);
+				statement1.setInt(1,eleveId);
+				statement1.setInt(2,teaId);
+				statement1.executeQuery();
+			} catch (SQLException e) {e.printStackTrace(); }
+		} else {
+			System.out.println("Plein");	
+		}
+}
+}}catch (SQLException e) {e.printStackTrace(); }
+	}
+	
+	public static boolean checkdoExist(Integer eleveId, Integer teaId) {
+		String sql = "SELECT * FROM NN WHERE eleve_id=? AND tea_id=?";
+		boolean res=false;
+		try {
+			DataSource dataSource = DataSourceProvider.getDataSource();
+			try (Connection cnx= dataSource.getConnection();
+				PreparedStatement statement = cnx.prepareStatement(sql);
+					)
+			{
+				statement.setInt(1, eleveId);
+				statement.setInt(2, teaId);
+				ResultSet resultSet=statement.executeQuery();
+				if (!resultSet.isBeforeFirst()) {
+					res=false;
+				}
+				else {
+					res=true;
+				}
+			}
+	} catch (SQLException e) {e.printStackTrace(); } 
+	return res;
+}
+}
 		
