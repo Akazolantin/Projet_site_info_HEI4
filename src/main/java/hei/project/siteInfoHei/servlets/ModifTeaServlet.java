@@ -29,6 +29,7 @@ public class ModifTeaServlet extends GenericServlet {
         id = Integer.parseInt(req.getParameter("id"));
 	    teaId= TeaService.getInstance().getTea(id);
         context.setVariable("tea", teaId);
+        context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
         
 	  
 	    if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
