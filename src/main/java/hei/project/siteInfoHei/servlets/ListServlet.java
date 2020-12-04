@@ -36,6 +36,9 @@ import hei.project.siteInfoHei.managers.TeaService;
 			templateEngine.process("list", context, resp.getWriter());
 
 	}
+		public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			
+		}
 }
 
 

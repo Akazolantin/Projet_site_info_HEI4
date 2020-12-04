@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,9 +98,54 @@ public class NNDao {
 		catch (SQLException e) {e.printStackTrace(); }
 		return nbr;}
 	
-			
+	public static void lienEleveTea(Integer eleveId, Integer teaId) {
+
+String sql="SELECT nbrDispo FROM tea WHERE tea_id = ? ;";
+try {
+	DataSource dataSource = DataSourceProvider.getDataSource();
+	try (Connection cnx= dataSource.getConnection();
+		PreparedStatement statement = cnx.prepareStatement(sql);
+			)
+	{
+		statement.setInt(1, teaId);
+		ResultSet resultSet=statement.executeQuery();
+		while(resultSet.next()) {
+		if (checkNombreParticipant(teaId)<((resultSet.getInt("nbrDispo")))) {
+			String sql1="INSERT INTO NN(eleve_id, tea_id) VALUES( ?, ?)";
+			try {
+				PreparedStatement statement1 = cnx.prepareStatement(sql1);
+				statement1.setInt(1,eleveId);
+				statement1.setInt(2,teaId);
+				statement1.executeQuery();
+			} catch (SQLException e) {e.printStackTrace(); }
+		} else {
+			System.out.println("Plein");	
+		}
+}
+}}catch (SQLException e) {e.printStackTrace(); }
 	}
-
-
-
+	
+	public static boolean checkdoExist(Integer eleveId, Integer teaId) {
+		String sql = "SELECT * FROM NN WHERE eleve_id=? AND tea_id=?";
+		boolean res=false;
+		try {
+			DataSource dataSource = DataSourceProvider.getDataSource();
+			try (Connection cnx= dataSource.getConnection();
+				PreparedStatement statement = cnx.prepareStatement(sql);
+					)
+			{
+				statement.setInt(1, eleveId);
+				statement.setInt(2, teaId);
+				ResultSet resultSet=statement.executeQuery();
+				if (!resultSet.isBeforeFirst()) {
+					res=false;
+				}
+				else {
+					res=true;
+				}
+			}
+	} catch (SQLException e) {e.printStackTrace(); } 
+	return res;
+}
+}
 		

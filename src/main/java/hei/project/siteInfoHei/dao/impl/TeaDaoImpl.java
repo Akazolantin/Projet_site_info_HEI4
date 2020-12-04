@@ -35,8 +35,12 @@ public class TeaDaoImpl implements TeaDao  {
 				ResultSet resultSet=statement.executeQuery();
 				
 				while(resultSet.next()) {
+					Integer teaId = resultSet.getInt("tea_id");
 					if(NNDao.checkNombreParticipant(resultSet.getInt("tea_id"))<resultSet.getInt("nbrDispo") && !ListeIdentifiants.currentAdmin) {
-					result.add(createTeaFromResultSet(resultSet));}else {result.add(createTeaFromResultSet(resultSet));}
+						if (NNDao.checkdoExist(ListeIdentifiants.IdUtil, teaId)==false) {
+							result.add(createTeaFromResultSet(resultSet));
+						}
+					}else {result.add(createTeaFromResultSet(resultSet));}
 				}
 			}
 		} catch (SQLException e) {
