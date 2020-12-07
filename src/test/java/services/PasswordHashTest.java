@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import hei.project.siteInfoHei.Service.PasswordHash;
+
 public class PasswordHashTest {
 	
 	@Test
@@ -14,7 +16,7 @@ public class PasswordHashTest {
 		String hashMdp = "$argon2i$v=19$m=65536,t=22,p=1$+0I+XAJBRoSGkKczm/wzqA$mZv9qrL0Cm0rZ4BisBo6yArTa8hUstdWy06SLTV11SY";
 		
 		//WHEN
-		String hash = hei.project.siteInfoHei.Service.PasswordHash.encrypt(mdp);
+		String hash = PasswordHash.encrypt(mdp);
 		
 		//THEN
 		assertEquals(hashMdp,hash);
@@ -27,7 +29,7 @@ public class PasswordHashTest {
 		String mdp = "Paturel";
 		
 		//WHEN
-		boolean check = hei.project.siteInfoHei.Service.PasswordHash.verify(hash, mdp);
+		boolean check = PasswordHash.verify(hash, mdp);
 		
 		//THEN
 		assertTrue(check);
