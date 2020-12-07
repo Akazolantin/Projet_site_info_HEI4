@@ -21,6 +21,10 @@ public class Tea {
 			this.valide = valide;
 			this.nbrDispo=nbrDispo;
 		}
+		
+		public Tea() {
+		}
+		
 
 
 		public Integer getNbrDispo() {

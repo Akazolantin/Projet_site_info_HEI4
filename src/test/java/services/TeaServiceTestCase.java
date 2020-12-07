@@ -1,8 +1,10 @@
 package services;
 
+import static org.junit.Assert.fail;
+
 import java.io.FileNotFoundException;
 import java.sql.Connection;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,6 +29,7 @@ import hei.project.siteInfoHei.dao.impl.TeaDaoImpl;
 import hei.project.siteInfoHei.entities.Tea;
 
 
+
 @RunWith(MockitoJUnitRunner.class) 
 public class TeaServiceTestCase {
 
@@ -38,80 +41,127 @@ public class TeaServiceTestCase {
 	private TeaServiceImpl teaService;
 
 
-	@Test
-	public void shouldListTea() {
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldReturnExceptionTeaIsNull() throws Exception, FileNotFoundException  {
 		//GIVEN
-		Tea tea =new Tea(1, "tea2", LocalDate.of(2020, 9, 13), 2, false, 2);
-		Tea tea1 =new Tea(2, "tea3", LocalDate.of(2020, 8, 12), 1, false, 3);
-		List<Tea> titles = Arrays.asList(tea,tea1);
-		Mockito.when(teaDao.listTea()).thenReturn(titles);
-
+		Tea tea = null;
+	
 		//WHEN
-		List<Tea> result = teaDao.listTea();
+		Tea result =  teaService.addTea(tea);
 
 		//THEN
-		Assertions.assertThat(result).containsExactlyInAnyOrderElementsOf(titles);
-	}
+		fail("Should throw a IllegalArgumentException");
+		
 
-
-	@Test
-	public void shouldGetTea() throws FileNotFoundException, DataFormatException {
-		// WHEN
-		Tea tea = teaDao.getTea(1);
-		// THEN
-
-		Assertions.assertThat(tea).isNotNull();
-		Assertions.assertThat(tea.getId()).isEqualTo(1);
-		Assertions.assertThat(tea.getTitle()).isEqualTo("my title 1");
-		Assertions.assertThat(tea.getReleaseDate()).isEqualTo(LocalDate.of(2019, Month.NOVEMBER, 26));
-		Assertions.assertThat(tea.getDuration()).isEqualTo(2);
-		Assertions.assertThat(tea.getValide()).isEqualTo(false);
-		Assertions.assertThat(tea.getNbrDispo()).isEqualTo(3);
-	}
-
-	@Test
-	public void shouldAddTea() throws Exception, FileNotFoundException  {
+	} 
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldReturnExceptionTitleIsNull() throws Exception, FileNotFoundException  {
 		//GIVEN
-
-		Tea teaToCreate = new Tea(null, "My new tea", LocalDate.of(2019, Month.OCTOBER, 20), 2,false, null);
-		String title = "avenger";
-		Integer duration = 2;
-		teaToCreate.setTitle(title);
-		teaToCreate.setDuration(duration);
-
-
-		Mockito.when(storageService.read(title)).thenThrow(new SeriesNotFoundException(title));
-		Mockito.when(converterService.encode(series)).thenReturn(data);
-
+		Tea tea = new Tea();
+		Integer id=1;
+		String title;
+		LocalDate releaseDate= LocalDate.of(2020, 9, 13);
+		Integer duration=2;
+		Boolean valide = false;
+		Integer nbrDispo = 2;
+		
+		tea.setId(id);
+		tea.setReleaseDate(releaseDate);
+		tea.setDuration(duration);
+		tea.setValide(valide);
+		tea.setNbrDispo(nbrDispo);
+	
 		//WHEN
-		Tea teaCreated =  teaService.addTea(teaToCreate);
+		Tea result =  teaService.addTea(tea);
 
 		//THEN
+		fail("Should throw a IllegalArgumentException");
+		
 
-	} {
-		// GIVEN
-		Tea teaToCreate = new Tea(null, "My new tea", LocalDate.of(2019, Month.OCTOBER, 20), 2,false, null);
-		// WHEN
-		Tea teaCreated = teaDao.addTea(teaToCreate);
-		// THEN
-		try (Connection connection = DataSourceProvider.getDataSource().getConnection();
-				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM tea WHERE tea_id = ?")) {
-			stmt.setInt(1, teaCreated.getId());
-			try (ResultSet rs = stmt.executeQuery()) {
-				Assertions.assertThat(rs.next()).isTrue();
-				Assertions.assertThat(rs.getInt("tea_id")).isEqualTo(teaCreated.getId());
-				Assertions.assertThat(rs.getString("title")).isEqualTo("My new tea");
-				Assertions.assertThat(rs.getDate("release_date").toLocalDate()).isEqualTo(LocalDate.of(2019, Month.OCTOBER, 20));
-				Assertions.assertThat(rs.getInt("duration")).isEqualTo(2);
-				Assertions.assertThat(rs.getBoolean("valide")).isEqualTo(false);
-				Assertions.assertThat(rs.getInt("nbrDispo")).isEqualTo(2);
-				Assertions.assertThat(rs.next()).isFalse();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	} 
+	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldReturnExceptionReleaseDateIsNull() throws Exception, FileNotFoundException  {
+		//GIVEN
+		Tea tea = new Tea();
+		Integer id=1;
+		String title="My new Tea";
+		LocalDate releaseDate;
+		Integer duration=2;
+		Boolean valide = false;
+		Integer nbrDispo = 2;
+		
+		tea.setId(id);
+		tea.setTitle(title);
+		tea.setDuration(duration);
+		tea.setValide(valide);
+		tea.setNbrDispo(nbrDispo);
+	
+		//WHEN
+		Tea result =  teaService.addTea(tea);
 
+		//THEN
+		fail("Should throw a IllegalArgumentException");
+		
+	} 
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldReturnExceptionDurationIsNull() throws Exception, FileNotFoundException  {
+		//GIVEN
+		Tea tea = new Tea();
+		Integer id=1;
+		String title="My new Tea";
+		LocalDate releaseDate= LocalDate.of(2020, 9, 13);
+		Integer duration;
+		Boolean valide = false;
+		Integer nbrDispo = 2;
+		
+		tea.setId(id);
+		tea.setTitle(title);
+		tea.setReleaseDate(releaseDate);
+		tea.setValide(valide);
+		tea.setNbrDispo(nbrDispo);
+	
+		//WHEN
+		Tea result =  teaService.addTea(tea);
+
+		//THEN
+		fail("Should throw a IllegalArgumentException");
+		
+
+	} 
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldReturnExceptionNbreDispoDateIsNull() throws Exception, FileNotFoundException  {
+		//GIVEN
+		Tea tea = new Tea();
+		Integer id=1;
+		String title="My new Tea";
+		LocalDate releaseDate= LocalDate.of(2020, 9, 13);
+		Integer duration=2;
+		Boolean valide = false;
+		Integer nbrDispo;
+		
+		tea.setId(id);
+		tea.setTitle(title);
+		tea.setDuration(duration);
+		tea.setReleaseDate(releaseDate);
+		tea.setValide(valide);
+
+	
+		//WHEN
+		Tea result =  teaService.addTea(tea);
+
+		//THEN
+		fail("Should throw a IllegalArgumentException");
+		
+	} 
+	
+	
+	
+	
 
 }
