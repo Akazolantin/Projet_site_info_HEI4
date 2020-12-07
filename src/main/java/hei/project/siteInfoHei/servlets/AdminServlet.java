@@ -25,6 +25,7 @@ public class AdminServlet extends GenericServlet{
 		WebContext context = new WebContext(req, resp, req.getServletContext());
 		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves("nom","0","%",""));
 		context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
+		context.setVariable("currentId", ListeIdentifiants.IdUtil);
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 
        templateEngine.process("adminhome", context, resp.getWriter());

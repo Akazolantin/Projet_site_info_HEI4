@@ -34,10 +34,13 @@ public class addEleveServlet extends GenericServlet{
 		String year=req.getParameter("year");
 		String nom=req.getParameter("nom");
 		String prenom=req.getParameter("prenom");
+		String admin=req.getParameter("Admin");
 		if(nom.equals("") || prenom.equals("")) {context.setVariable("message", "La saisie n'est pas valide, veuillez remplir tous les champs.");}
 		else {int id=hei.project.siteInfoHei.dao.impl.EleveDao.addEleve(nom, prenom, year, dom);
 			String ident=nom+'.'+prenom;
-			hei.project.siteInfoHei.dao.impl.ListeIdentifiants.addIdent(id, ident, ident);
+			boolean Admin=false;
+			if(admin.equals("on")) {Admin=true;}
+			hei.project.siteInfoHei.dao.impl.ListeIdentifiants.addIdent(id, ident, ident,Admin);
 			context.setVariable("message","L'élève a été créé avec succés. Son identifiant et mot de passe sont :"+ident);
 		}
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
