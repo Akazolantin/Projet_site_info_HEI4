@@ -11,14 +11,14 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-9">
 			<ul class="nav navbar-nav">
-				<li th:unless="${currentAdmin} "><a href="avancement">avancement
-						generale </a></li>
-				<li th:unless="${!currentAdmin} "><a href="admin">liste des
+				<li th:unless="${currentAdmin} "><a href="avancement">Avancement
+						general </a></li>
+				<li th:unless="${!currentAdmin} "><a href="admin">Liste des
 						élèves </a></li>
-				<li th:unless="${!currentAdmin} "><a href="newtea">ajouter
+				<li th:unless="${!currentAdmin} "><a href="newtea">Ajouter
 						un nouveau tea</a></li>
 				<li th:if="${currentPage == 'list'} ? 'active' : ''"><a
-					href="list">liste des TEA </a></li>
+					href="list">Liste des TEA </a></li>
 				<li style="float: right"><a href="changeMdp">Changer le mot
 						de passe</a></li>
 				<li style="float: right"><a href="Connexion">Déconnexion</a></li>
