@@ -12,14 +12,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
-import org.graalvm.compiler.debug.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import hei.project.siteInfoHei.Service.TeaServiceImpl;
+import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
 import hei.project.siteInfoHei.dao.impl.TeaDaoImpl;
 import hei.project.siteInfoHei.entities.Tea;
 
@@ -57,17 +59,17 @@ public class TeaServiceTestCase {
 		Tea tea = teaDao.getTea(1);
 		// THEN
 
-		assertThat(tea).isNotNull();
-		assertThat(tea.getId()).isEqualTo(1);
-		assertThat(tea.getTitle()).isEqualTo("my title 1");
-		assertThat(tea.getReleaseDate()).isEqualTo(LocalDate.of(2019, Month.NOVEMBER, 26));
-		assertThat(tea.getDuration()).isEqualTo(2);
-		assertThat(tea.getValide()).isEqualTo(false);
-		assertThat(tea.getNbrDispo()).isEqualTo(3);
+		Assertions.assertThat(tea).isNotNull();
+		Assertions.assertThat(tea.getId()).isEqualTo(1);
+		Assertions.assertThat(tea.getTitle()).isEqualTo("my title 1");
+		Assertions.assertThat(tea.getReleaseDate()).isEqualTo(LocalDate.of(2019, Month.NOVEMBER, 26));
+		Assertions.assertThat(tea.getDuration()).isEqualTo(2);
+		Assertions.assertThat(tea.getValide()).isEqualTo(false);
+		Assertions.assertThat(tea.getNbrDispo()).isEqualTo(3);
 	}
 
 	@Test
-	public void shouldAddTea() throws Exception, FileNotFoundException,  {
+	public void shouldAddTea() throws Exception, FileNotFoundException  {
 		//GIVEN
 
 		Tea teaToCreate = new Tea(null, "My new tea", LocalDate.of(2019, Month.OCTOBER, 20), 2,false, null);
@@ -95,14 +97,14 @@ public class TeaServiceTestCase {
 				PreparedStatement stmt = connection.prepareStatement("SELECT * FROM tea WHERE tea_id = ?")) {
 			stmt.setInt(1, teaCreated.getId());
 			try (ResultSet rs = stmt.executeQuery()) {
-				assertThat(rs.next()).isTrue();
-				assertThat(rs.getInt("tea_id")).isEqualTo(teaCreated.getId());
-				assertThat(rs.getString("title")).isEqualTo("My new tea");
-				assertThat(rs.getDate("release_date").toLocalDate()).isEqualTo(LocalDate.of(2019, Month.OCTOBER, 20));
-				assertThat(rs.getInt("duration")).isEqualTo(2);
-				assertThat(rs.getBoolean("valide")).isEqualTo(false);
-				assertThat(rs.getInt("nbrDispo")).isEqualTo(2);
-				assertThat(rs.next()).isFalse();
+				Assertions.assertThat(rs.next()).isTrue();
+				Assertions.assertThat(rs.getInt("tea_id")).isEqualTo(teaCreated.getId());
+				Assertions.assertThat(rs.getString("title")).isEqualTo("My new tea");
+				Assertions.assertThat(rs.getDate("release_date").toLocalDate()).isEqualTo(LocalDate.of(2019, Month.OCTOBER, 20));
+				Assertions.assertThat(rs.getInt("duration")).isEqualTo(2);
+				Assertions.assertThat(rs.getBoolean("valide")).isEqualTo(false);
+				Assertions.assertThat(rs.getInt("nbrDispo")).isEqualTo(2);
+				Assertions.assertThat(rs.next()).isFalse();
 			}
 		}
 	}
