@@ -5,6 +5,7 @@ import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Month;
@@ -106,6 +107,9 @@ public class TeaServiceTestCase {
 				Assertions.assertThat(rs.getInt("nbrDispo")).isEqualTo(2);
 				Assertions.assertThat(rs.next()).isFalse();
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
