@@ -4,7 +4,7 @@ import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import hei.project.siteInfoHei.dao.impl.DataSourceProvider;
 
-public class PasswordHash extends DataSourceProvider{
+public class PasswordHash {
 	
 	public static String encrypt(String Mdp) {
 		Argon2 argon2 = Argon2Factory.create();
