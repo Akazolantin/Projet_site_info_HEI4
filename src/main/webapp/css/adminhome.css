@@ -21,9 +21,8 @@ table{
 td{
 	padding: 1em;
 }
-
 .rechercher{
 	text-align: center;
-	padding: 2em;
-	padding-top: 10em;
+	padding-top: 5em;
+	padding-bottom: 2em;
 }
