@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import hei.project.siteInfoHei.Service.TeaService;
+import hei.project.siteInfoHei.Service.TeaServiceImpl;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.entities.Tea;
 
@@ -31,8 +31,6 @@ public class AddTeaServlet  extends GenericServlet {
 			req.getSession().removeAttribute("errorMessage");
 
 			WebContext context = new WebContext(req, resp, req.getServletContext());
-			List<Tea> listOfTea = TeaService.getInstance().listTea();
-			context.setVariable("TeaDao",listOfTea);
 			context.setVariable("error", errorMessage);
 			context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 			
@@ -72,7 +70,7 @@ public class AddTeaServlet  extends GenericServlet {
 
 			try {
 				Tea newTea = new Tea(null, title, releaseDate, duration,false,nbrDispo);
-				Tea createdTea = TeaService.getInstance().addTea(newTea);
+				Tea createdTea = TeaServiceImpl.getInstance().addTea(newTea);
 				// si creation ok on affiche le tea qui vient d'etre cree
 				resp.sendRedirect(String.format("tea?id=%d", createdTea.getId()));
 			}

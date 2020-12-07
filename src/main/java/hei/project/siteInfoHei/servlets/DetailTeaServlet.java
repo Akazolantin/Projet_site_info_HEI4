@@ -3,7 +3,7 @@ package hei.project.siteInfoHei.servlets;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import hei.project.siteInfoHei.Service.TeaService;
+import hei.project.siteInfoHei.Service.TeaServiceImpl;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
 import hei.project.siteInfoHei.dao.impl.NNDao;
 import hei.project.siteInfoHei.dao.impl.TeaDaoImpl;
@@ -27,7 +27,7 @@ import java.io.IOException;
 		    	   resp.sendRedirect("Connexion");
 		       }
 	        teaId = Integer.parseInt(req.getParameter("id"));
-	        Tea tea = TeaService.getInstance().getTea(teaId);
+	        Tea tea = TeaDaoImpl.getTea(teaId);
 	        context.setVariable("tea", tea);
 	        context.setVariable("admin", ListeIdentifiants.currentAdmin);
 	        context.setVariable("exist", NNDao.checkdoExist(ListeIdentifiants.IdUtil, teaId));

@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import hei.project.siteInfoHei.Service.TeaService;
+import hei.project.siteInfoHei.Service.TeaServiceImpl;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+import hei.project.siteInfoHei.dao.impl.TeaDaoImpl;
 import hei.project.siteInfoHei.entities.Tea;
 
 @WebServlet("/modiftea")
@@ -27,7 +28,7 @@ public class ModifTeaServlet extends GenericServlet {
 		WebContext context = new WebContext(req, resp, req.getServletContext());
         
         id = Integer.parseInt(req.getParameter("id"));
-	    teaId= TeaService.getInstance().getTea(id);
+	    teaId= TeaDaoImpl.getTea(id);
         context.setVariable("tea", teaId);
         context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
         
@@ -71,7 +72,7 @@ public class ModifTeaServlet extends GenericServlet {
 			
 		
 		try {
-			Tea modifTea = TeaService.getInstance().modifTea(id, title, releaseDate, duration,valide);
+			Tea modifTea = TeaDaoImpl.modifTea(id, title, releaseDate, duration,valide);
 			// si creation ok on affiche le tea qui vient d'etre cree
 			resp.sendRedirect("list");
 		}

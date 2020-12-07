@@ -12,15 +12,15 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import hei.project.siteInfoHei.dao.TeaDao;
+
 import hei.project.siteInfoHei.entities.Tea;
 import hei.project.siteInfoHei.servlets.PageAccueilServlet;
 import hei.project.siteInfoHei.dao.impl.NNDao;
 
-public class TeaDaoImpl implements TeaDao  {
+public class TeaDaoImpl   {
 
-	@Override
-	public List<Tea> listTea() {
+
+	public static List<Tea> listTea() {
 		List<Tea> result = new ArrayList<>();
 		String sql="SELECT * FROM tea WHERE valide=false ";
 		if (!ListeIdentifiants.currentAdmin) {sql+=" AND release_date > CURRENT_DATE() ";}
@@ -49,8 +49,8 @@ public class TeaDaoImpl implements TeaDao  {
 		return result;
 	}
 
-	@Override
-	public Tea getTea(int id) {
+	
+	public static Tea getTea(int id) {
 		Tea tea = null;
 		String sql = "SELECT * FROM tea WHERE tea_id=?";
 		try {
@@ -70,7 +70,7 @@ public class TeaDaoImpl implements TeaDao  {
 		return tea;
 	}
 
-	private Tea createTeaFromResultSet(ResultSet resultSet) throws SQLException {
+	private static Tea createTeaFromResultSet(ResultSet resultSet) throws SQLException {
 		return new Tea(
 				resultSet.getInt("tea_id"),
 				resultSet.getString("title"),
@@ -82,7 +82,7 @@ public class TeaDaoImpl implements TeaDao  {
 	
 	}
 
-	@Override
+	
 	public Tea addTea(Tea tea) {
 		String sql = "INSERT INTO tea (title, release_date, duration, valide,nbrDispo ) VALUES ( ?, ?, ?, ?,?)";
 		try {
@@ -121,7 +121,7 @@ public class TeaDaoImpl implements TeaDao  {
     
     
     
-    public Tea modifTea (int id,String title,LocalDate releaseDate, int duration,Boolean valide) {
+    public static Tea modifTea (int id,String title,LocalDate releaseDate, int duration,Boolean valide) {
     	Tea tea = null;
     	try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
 			String sqlQuery = "update tea set title=?, release_date=?, duration=?, valide=? WHERE tea_id=?;";

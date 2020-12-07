@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import hei.project.siteInfoHei.Service.TeaService;
+import hei.project.siteInfoHei.Service.TeaServiceImpl;
 import hei.project.siteInfoHei.dao.impl.ListeIdentifiants;
+import hei.project.siteInfoHei.dao.impl.TeaDaoImpl;
 import hei.project.siteInfoHei.entities.Tea;
 
 
@@ -26,7 +27,7 @@ import hei.project.siteInfoHei.entities.Tea;
 		public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			// TODO Auto-generated method stub
 			WebContext context = new WebContext(req, resp, req.getServletContext());
-			List<Tea> listOfTea = TeaService.getInstance().listTea();
+			List<Tea> listOfTea = TeaDaoImpl.listTea();
 			context.setVariable("result",listOfTea);
 			context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 			if (PageAccueilServlet.getSession()==false ) {
