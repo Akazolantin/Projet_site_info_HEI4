@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/ajouteleve.css">
 <title>Insert title here</title>
 </head>
 <body>
+	<header>
+	<nav th:replace="~{fragments::menu('admin')}"></nav>
+	</header>
 	<form method="post" >
 		<input name="nom" type="text" th:placeholder="${eleve.nom}"  />
 		<input name="prenom" type="text" th:placeholder="${eleve.prenom}"
