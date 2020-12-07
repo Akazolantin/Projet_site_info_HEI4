@@ -13,6 +13,7 @@
 
 	<form method="post">
 
+
 		Nom <input type="text" name="nom"> Prénom <input type="text"
 			name="prenom"> Année <select name="year" size=1>
 			<option value=1 selected>HEI 1</option>
@@ -24,9 +25,11 @@
 			<option value="" selected>pas de selection</option>
 			<option value="BTP">BTP</option>
 			<option value="ITI">ITI</option>
-		</select> <input type="submit" value="Créer"> <input type="checkbox"
-			value="Admin">
+		</select> <input type="checkbox" name="Admin">Admin <input
+			type="submit" value="Cr�er">
+
 	</form>
 	<label th:text="${message}"></label>
+
 </body>
 </html>

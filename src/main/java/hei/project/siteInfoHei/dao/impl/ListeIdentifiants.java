@@ -21,15 +21,16 @@ public class ListeIdentifiants {
 	public static boolean currentAdmin;
 	public static int IdUtil;
 	
-	public static void addIdent(int eleve_id,String ident, String mdp) {
+	public static void addIdent(int eleve_id,String ident, String mdp,boolean Admin) {
 		try (Connection connection = DataSourceProvider.getDataSource().getConnection()) {
-			String sqlQuery = "insert into identifiant(eleve_id, nomUtil, Mdp, Admin) VALUES(?,?,?,false)";
+			String sqlQuery = "insert into identifiant(eleve_id, nomUtil, Mdp, Admin) VALUES(?,?,?,?)";
 			try (PreparedStatement statement = connection.prepareStatement( sqlQuery)) 
 			{ statement.setInt(1, eleve_id); 
 			statement.setString(2, ident);
 			String hash = PasswordHash.encrypt(mdp);
 			statement.setString(3, hash);
-			statement.executeUpdate(); 
+			statement.setBoolean(4, Admin);
+			statement.executeUpdate();
 		 } }
 		catch (SQLException e) { e.printStackTrace(); }
 		}

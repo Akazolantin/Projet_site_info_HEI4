@@ -48,7 +48,7 @@
 			<td th:text="${eleve.domaine}"></td>
 			<td><a th:href="@{/supprmodif(id=${eleve.eleve_id})}">modifier</a></td>
 			<td><a href="#"
-				th:onclick="'deleteEleve('+${eleve.eleve_id}+')'">Supprimer</a></td>
+				th:onclick="'deleteEleve('+${eleve.eleve_id}+','+${currentId}+')'">Supprimer</a></td>
 			<td><a th:href="@{/avancement(id=${eleve.eleve_id})}">details</a></td>
 		</tr>
 
