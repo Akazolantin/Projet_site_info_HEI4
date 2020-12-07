@@ -15,6 +15,8 @@
 						general </a></li>
 				<li th:unless="${!currentAdmin} "><a href="admin">Liste des
 						élèves </a></li>
+				<li th:unless="${!currentAdmin} "><a href="addEleve">Ajouter un
+						élève </a></li>
 				<li th:unless="${!currentAdmin} "><a href="newtea">Ajouter
 						un nouveau tea</a></li>
 				<li th:if="${currentPage == 'list'} ? 'active' : ''"><a
