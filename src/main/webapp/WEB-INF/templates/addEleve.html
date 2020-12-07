@@ -2,39 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="css/ajouteleve.css">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>CrÃ©er un Ã©lÃ¨ve</title>
 </head>
 <body>
-<header>
-<a href="admin">Retour</a>
-</header>
-<h1>Page de création d'élèves</h1>
+	<header>
+		<nav th:replace="~{fragments::menu('admin')}"></nav>
+	</header>
+	<h1>CrÃ©ation d'un Ã©lÃ¨ve</h1>
 
-<form method="post">
+	<form method="post">
 
-Nom
-<input type="text" name="nom">
-Prénom
-<input type="text" name="prenom">
-
-Année
-<select name="year" size=1>
-<option value=1 selected>HEI 1</option>
-<option value=2>HEI 2</option>
-<option value=3>HEI 3</option>
-<option value=4>HEI 4</option>
-<option value=5>HEI 5</option>
-</select>
-Domaine
-<select name="domaine" size=1>
-<option value="" selected>pas de selection</option>
-<option value="BTP">BTP</option>
-<option value="ITI">ITI</option>
-</select>
-<input type="submit" value="Créer">
-<input type="checkbox" value="Admin" >
-</form>
-<label th:text="${message}"></label>
+		Nom <input type="text" name="nom"> PrÃ©nom <input type="text"
+			name="prenom"> AnnÃ©e <select name="year" size=1>
+			<option value=1 selected>HEI 1</option>
+			<option value=2>HEI 2</option>
+			<option value=3>HEI 3</option>
+			<option value=4>HEI 4</option>
+			<option value=5>HEI 5</option>
+		</select> Domaine <select name="domaine" size=1>
+			<option value="" selected>pas de selection</option>
+			<option value="BTP">BTP</option>
+			<option value="ITI">ITI</option>
+		</select> <input type="submit" value="CrÃ©er"> <input type="checkbox"
+			value="Admin">
+	</form>
+	<label th:text="${message}"></label>
 </body>
 </html>

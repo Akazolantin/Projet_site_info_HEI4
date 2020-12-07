@@ -24,6 +24,7 @@ public class addEleveServlet extends GenericServlet{
 		WebContext context = new WebContext(req, resp, req.getServletContext());
 		 TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 		 context.setVariable("message","");
+		 context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 	        
 	        
 	       templateEngine.process("addEleve", context, resp.getWriter());}

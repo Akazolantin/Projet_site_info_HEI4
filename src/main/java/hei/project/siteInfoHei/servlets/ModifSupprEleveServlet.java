@@ -25,6 +25,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse resp) throws Servl
     TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
     currentEleve=hei.project.siteInfoHei.dao.impl.EleveDao.getEleveById(id);
     context.setVariable("eleve", currentEleve);
+    context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
     if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
     	   resp.sendRedirect("Connexion");
        }
