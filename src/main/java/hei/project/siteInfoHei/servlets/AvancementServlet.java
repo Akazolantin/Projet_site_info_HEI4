@@ -36,7 +36,7 @@ public class AvancementServlet extends GenericServlet{
 			else {
 				eleve_id = ListeIdentifiants.IdUtil;
 			}
-			
+			context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 			
 			
 			List<Tea> listetea = hei.project.siteInfoHei.dao.impl.NNDao.listNNTea(eleve_id);

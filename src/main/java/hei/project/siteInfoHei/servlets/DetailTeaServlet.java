@@ -29,7 +29,7 @@ import java.io.IOException;
 	        teaId = Integer.parseInt(req.getParameter("id"));
 	        Tea tea = TeaDaoImpl.getTea(teaId);
 	        context.setVariable("tea", tea);
-	        context.setVariable("admin", ListeIdentifiants.currentAdmin);
+	        context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 	        context.setVariable("exist", NNDao.checkdoExist(ListeIdentifiants.IdUtil, teaId));
 
 	        TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
