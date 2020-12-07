@@ -4,8 +4,9 @@
     <title>Liste des taches</title> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/listTEA.css">
-    
+
+	<link rel="stylesheet" type="text/css" href="css/listTEA.css">
+    <script type="application/javascript" src="js/listTea.js"></script>
 </head>
 
 <body>
@@ -35,6 +36,8 @@
 							
 							<td th:text="${tea.valide}">True</td>
 							 <td th:unless="${!currentAdmin} "><a th:href="@{/modiftea(id=${tea.id})}">modifier</a></td>
+							 <td><a href="#"
+				th:onclick="'deleteTea('+${tea.id}+')'">Supprimer</a></td>
 							<td> <a th:href="@{/tea(id=${tea.id})}">details</a></td>
 							
 						</tr>

@@ -18,12 +18,11 @@ public class SupprTeaServlet extends GenericServlet{
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		WebContext context = new WebContext(req, resp, req.getServletContext());
 		if (PageAccueilServlet.getSession()==false || !ListeIdentifiants.currentAdmin) {
 	    	   resp.sendRedirect("Connexion");
 	       }
 		int id = Integer.parseInt(req.getParameter("id"));
-	    TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-	    hei.project.siteInfoHei.dao.impl.EleveDao.delete(id);resp.sendRedirect("admin");
+	    hei.project.siteInfoHei.dao.impl.TeaDaoImpl.deleteTEA(id);
+	    resp.sendRedirect("/site-info-hei/list");
 	}
 }
