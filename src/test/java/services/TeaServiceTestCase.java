@@ -43,7 +43,7 @@ public class TeaServiceTestCase {
 
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void shouldReturnExceptionTeaIsNull() throws Exception, FileNotFoundException  {
+	public void shouldReturnExceptionTeaIsNull() throws IllegalArgumentException  {
 		//GIVEN
 		Tea tea = null;
 	
@@ -57,7 +57,7 @@ public class TeaServiceTestCase {
 	} 
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void shouldReturnExceptionTitleIsNull() throws Exception, FileNotFoundException  {
+	public void shouldReturnExceptionTitleIsNull() throws IllegalArgumentException {
 		//GIVEN
 		Tea tea = new Tea();
 		Integer id=1;
@@ -84,7 +84,7 @@ public class TeaServiceTestCase {
 	
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void shouldReturnExceptionReleaseDateIsNull() throws Exception, FileNotFoundException  {
+	public void shouldReturnExceptionReleaseDateIsNull() throws IllegalArgumentException  {
 		//GIVEN
 		Tea tea = new Tea();
 		Integer id=1;
@@ -109,7 +109,7 @@ public class TeaServiceTestCase {
 	} 
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void shouldReturnExceptionDurationIsNull() throws Exception, FileNotFoundException  {
+	public void shouldReturnExceptionDurationIsNull() throws IllegalArgumentException  {
 		//GIVEN
 		Tea tea = new Tea();
 		Integer id=1;
@@ -135,7 +135,7 @@ public class TeaServiceTestCase {
 	} 
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void shouldReturnExceptionNbreDispoDateIsNull() throws Exception, FileNotFoundException  {
+	public void shouldReturnExceptionNbreDispoDateIsNull() throws IllegalArgumentException  {
 		//GIVEN
 		Tea tea = new Tea();
 		Integer id=1;
@@ -159,6 +159,32 @@ public class TeaServiceTestCase {
 		fail("Should throw a IllegalArgumentException");
 		
 	} 
+	
+	@Test
+	public void shouldCallAddTeaDao()   {
+		//GIVEN
+		Tea tea = new Tea();
+		Integer id=1;
+		String title="My new Tea";
+		LocalDate releaseDate=LocalDate.of(2020, 9, 13);
+		Integer duration=2;
+		Boolean valide = false;
+		Integer nbrDispo = 2;
+		
+		tea.setId(id);
+		tea.setTitle(title);
+		tea.setReleaseDate(releaseDate);
+		tea.setDuration(duration);
+		tea.setValide(valide);
+		tea.setNbrDispo(nbrDispo);
+	
+		//WHEN
+		Tea result =  teaService.addTea(tea);
+
+		//THEN
+		 Mockito.verify(teaDao,Mockito.times(1)).addTea(tea);
+	} 
+	
 	
 	
 	
