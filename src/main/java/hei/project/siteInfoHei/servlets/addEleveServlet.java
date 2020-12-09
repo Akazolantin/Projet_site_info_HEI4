@@ -40,7 +40,7 @@ public class addEleveServlet extends GenericServlet{
 		else {int id=hei.project.siteInfoHei.dao.impl.EleveDao.addEleve(nom, prenom, year, dom);
 			String ident=nom+'.'+prenom;
 			boolean Admin=false;
-			if(admin.equals("on")) {Admin=true;}
+			if(admin==null) {Admin=false;}else {Admin=true;}
 			hei.project.siteInfoHei.dao.impl.ListeIdentifiants.addIdent(id, ident, ident,Admin);
 			context.setVariable("message","L'élève a été créé avec succés. Son identifiant et mot de passe sont :"+ident);
 		}

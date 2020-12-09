@@ -44,10 +44,10 @@
 				</div>
 			</div>
 			<form method="post">
-			<span th:if="${admin}">
+			<span th:if="${currentAdmin}">
 			<input type="submit" value="Valider" />
 			</span>
-			<span th:block th:unless="${admin}">
+			<span th:block th:unless="${currentAdmin}">
 				<span th:block th:unless="${exist}">
 					<input type="submit" value="Selectionner" />
 				</span>

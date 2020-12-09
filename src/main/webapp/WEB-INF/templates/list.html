@@ -36,7 +36,7 @@
 							
 							<td th:text="${tea.valide}">True</td>
 							 <td th:unless="${!currentAdmin} "><a th:href="@{/modiftea(id=${tea.id})}">modifier</a></td>
-							 <td><a href="#"
+							 <td th:unless="${!currentAdmin} "><a href="#"
 				th:onclick="'deleteTea('+${tea.id}+')'">Supprimer</a></td>
 							<td> <a th:href="@{/tea(id=${tea.id})}">details</a></td>
 							
