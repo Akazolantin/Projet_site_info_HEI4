@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
     <title>Liste des taches</title> 
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" type="text/css" href="css/listTEA.css">
@@ -31,7 +31,7 @@
 						<tr th:each="tea : ${result}">
 							<td th:text="${tea.id}">1</td>
 							<td th:text="${tea.title}">Forum HEI</td>
-							<td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}">2019-10-10</td>
+							<td th:text="${#temporals.format(tea.releaseDate, 'd MMMM yyyy')}">2019-10-19</td>
 							<td><p th:text="${tea.duration}">heure(s)</p></td>
 							
 							<td th:text="${tea.valide}">True</td>
