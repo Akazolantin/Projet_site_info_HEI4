@@ -27,13 +27,11 @@ public class AdminServlet extends GenericServlet{
 		context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 		context.setVariable("currentId", ListeIdentifiants.IdUtil);
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
-
        templateEngine.process("adminhome", context, resp.getWriter());
        
 	}
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		WebContext context = new WebContext(req, resp, req.getServletContext());
-		
 		String dom=req.getParameter("domaine");
 		String year=req.getParameter("year");
 		String tripar=req.getParameter("tripar");
