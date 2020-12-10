@@ -44,6 +44,7 @@ public class addEleveServlet extends GenericServlet{
 			hei.project.siteInfoHei.dao.impl.ListeIdentifiants.addIdent(id, ident, ident,Admin);
 			context.setVariable("message","L'élève a été créé avec succés. Son identifiant et mot de passe sont :"+ident);
 		}
+		context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
 		templateEngine.process("addEleve", context, resp.getWriter());
 	}
