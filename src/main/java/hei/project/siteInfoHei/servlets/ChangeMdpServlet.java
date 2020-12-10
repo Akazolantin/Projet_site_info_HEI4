@@ -28,11 +28,13 @@ public class ChangeMdpServlet extends GenericServlet{
 				context.setVariable("alerte", res);
 
 		        TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
+		        context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
 		        
 		        if (PageAccueilServlet.getSession()==false) {
 			    	   resp.sendRedirect("Connexion");
 			       }
 		        templateEngine.process("changeMdp", context, resp.getWriter());
+		     
 				
 			} 
 			public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

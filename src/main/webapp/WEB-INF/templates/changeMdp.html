@@ -2,10 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" type="text/css" href="css/changeMdp.css">
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <meta charset="ISO-8859-1">
 <title>Changement de mot de passe</title>
 </head>
 <body>
+
+	<header>
+		<nav th:replace="~{fragments::menu('admin')}"></nav>
+	</header>
 
 	<form method="post">
 		<h2>Donnez votre mot de passe actuel :</h2>
