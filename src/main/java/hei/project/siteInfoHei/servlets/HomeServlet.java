@@ -20,7 +20,6 @@ public class HomeServlet extends GenericServlet{
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         templateEngine.process("index", context, resp.getWriter());
         
-        System.out.println(hei.project.siteInfoHei.Service.PasswordHash.encrypt("Cauchois"));
 	
 	}
 
