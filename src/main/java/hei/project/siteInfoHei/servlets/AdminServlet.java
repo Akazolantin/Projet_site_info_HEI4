@@ -39,6 +39,8 @@ public class AdminServlet extends GenericServlet{
 		String tripar=req.getParameter("tripar");
 		String rechNom=req.getParameter("rechNom");
 		context.setVariable("eleves", hei.project.siteInfoHei.dao.impl.EleveDao.listEleves(tripar,year,dom,rechNom));
+		context.setVariable("currentAdmin", ListeIdentifiants.currentAdmin);
+		context.setVariable("currentId", ListeIdentifiants.IdUtil);
 		TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         templateEngine.process("adminhome", context, resp.getWriter());
 	
